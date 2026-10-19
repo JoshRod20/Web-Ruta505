@@ -1,0 +1,157 @@
+/* =====================================================
+   SPLASH SCREEN - RUTA 505
+===================================================== */
+
+html,
+body,
+#root{
+    margin:0;
+    width:100%;
+    height:100%;
+}
+
+/* =======================
+   Splash
+======================= */
+
+.splash{
+
+    position:fixed;
+    inset:0;
+
+    z-index:9999;
+
+    display:grid;
+    place-items:center;
+
+    background:#ffffff;
+
+    background-image:
+        radial-gradient(
+            circle at 1px 1px,
+            rgba(11,110,54,.08) 1px,
+            transparent 0
+        );
+
+    background-size:24px 24px;
+
+    transition:opacity .45s ease;
+
+}
+
+.splash--hide{
+
+    opacity:0;
+    pointer-events:none;
+
+}
+
+/* =======================
+   Contenido
+======================= */
+
+.splash__content{
+
+    width:min(320px,90vw);
+
+    display:grid;
+    justify-items:center;
+    row-gap:42px;
+
+}
+
+/* =======================
+   Logo
+======================= */
+
+.splash__logo-wrapper{
+
+    width:100%;
+
+    display:grid;
+    place-items:center;
+
+    margin:0;
+
+}
+
+.splash__logo{
+
+    display:block;
+
+    width:220px;
+    max-width:100%;
+
+    height:auto;
+
+    user-select:none;
+    pointer-events:none;
+
+    animation:logoIntro .75s cubic-bezier(.22,1,.36,1);
+
+}
+
+/* =======================
+   Loader
+======================= */
+
+.splash__loader{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.splash__dot{
+
+    width:10px;
+    height:10px;
+
+    border-radius:50%;
+
+    background:#8CC63F;
+
+    animation:loaderDots 1.3s ease-in-out infinite;
+
+}
+
+/* =======================
+   Animaciones
+======================= */
+
+@keyframes logoIntro{
+
+    0%{
+        opacity:0;
+        transform:scale(.82);
+    }
+
+    70%{
+        opacity:1;
+        transform:scale(1.05);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+
+}
+
+@keyframes loaderDots{
+
+    0%,100%{
+        transform:scale(.75);
+        opacity:.35;
+        background:#8CC63F;
+    }
+
+    50%{
+        transform:scale(1.25);
+        opacity:1;
+        background:#F7941D;
+    }
+
+}

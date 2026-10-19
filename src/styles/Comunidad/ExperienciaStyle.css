@@ -1,0 +1,162 @@
+/* src/styles/comunidad/ExperienciaStyle.css
+   ===========================================================
+   Estilo propio de ExperienciaForm.jsx (alta de experiencia
+   cultural). Misma línea visual que los formularios de registro
+   (píldoras verdes, CTA naranja, tarjeta blanca superpuesta),
+   pero como archivo independiente, siguiendo la convención de
+   una carpeta de estilos por página dentro de styles/.
+   =========================================================== */
+
+.experiencia-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5rem 1.5rem 3rem;
+  background: var(--color-ruta-cream);
+}
+
+.experiencia-shell {
+  width: 100%;
+  max-width: 420px;
+}
+
+.experiencia-header {
+  text-align: center;
+  max-width: 420px;
+  margin-bottom: 1.75rem;
+}
+
+.experiencia-header__title {
+  font-family: "Poppins-Bold";
+  font-size: 1.5rem;
+  color: var(--color-ruta-ink);
+  margin: 0 0 0.4rem;
+}
+
+.experiencia-header__subtitle {
+  font-family: "Inter-Regular";
+  font-size: 0.95rem;
+  color: var(--color-ruta-ink);
+  opacity: 0.7;
+  margin: 0;
+}
+
+.experiencia-card {
+  background: #fff;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 24px 50px -24px rgba(15, 23, 42, 0.25);
+}
+
+.experiencia-back {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "Inter-SemiBold";
+  font-size: 0.85rem;
+  color: var(--color-ruta-forest);
+}
+
+.experiencia-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.experiencia-input,
+.experiencia-select {
+  width: 100%;
+  padding: 0.85rem 1.25rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--color-ruta-leaf);
+  color: #fff;
+  font-family: "Inter-Regular";
+  font-size: 0.95rem;
+}
+
+.experiencia-input::placeholder {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.experiencia-select {
+  appearance: none;
+}
+
+.experiencia-textarea {
+  width: 100%;
+  padding: 0.85rem 1.25rem;
+  border: none;
+  border-radius: 1.25rem;
+  background: var(--color-ruta-leaf);
+  color: #fff;
+  font-family: "Inter-Regular";
+  font-size: 0.95rem;
+  min-height: 90px;
+  resize: vertical;
+}
+
+.experiencia-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.experiencia-link-btn {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "Inter-SemiBold";
+  font-size: 0.85rem;
+  color: var(--color-ruta-forest);
+}
+
+.experiencia-link-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.experiencia-feedback {
+  font-family: "Inter-SemiBold";
+  color: var(--color-ruta-forest);
+  font-size: 0.85rem;
+  text-align: center;
+  margin: 0;
+}
+
+.experiencia-error {
+  font-family: "Inter-SemiBold";
+  color: #d9534f;
+  font-size: 0.85rem;
+  text-align: center;
+  margin: 0;
+}
+
+.experiencia-submit {
+  margin-top: 0.5rem;
+  padding: 0.85rem 1.5rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--color-ruta-sun);
+  color: var(--color-ruta-ink);
+  font-family: "Inter-SemiBold";
+  font-size: 1rem;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.experiencia-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

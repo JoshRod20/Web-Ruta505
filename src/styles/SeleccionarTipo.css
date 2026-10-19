@@ -1,0 +1,372 @@
+/* src/styles/RegistroFormularios.css
+   ===========================================================
+   Pantallas de registro por rol (turista, comunidad, artesano,
+   guía, emprendedor, institución).
+   Mismo lenguaje visual que Auth.css (header azul + tarjeta
+   blanca superpuesta + inputs píldora verdes + CTA naranja),
+   pero con clases propias e independientes.
+   =========================================================== */
+
+:root {
+  --registro-green: var(--color-ruta-leaf, #8cc63f);
+  --registro-green-dark: var(--color-ruta-forest, #0b6e36);
+  --registro-blue: var(--color-ruta-sky, #29abe2);
+  --registro-orange: var(--color-ruta-sun, #f7941d);
+  --registro-page-bg: #eef2f5;
+}
+
+.registro-page {
+  min-height: 100dvh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--registro-page-bg);
+  padding: 24px 16px;
+  box-sizing: border-box;
+}
+.registro-page * {
+  box-sizing: border-box;
+}
+
+.registro-shell {
+  width: 100%;
+  max-width: 380px;
+  background: #ffffff;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 24px 50px -24px rgba(15, 23, 42, 0.35);
+}
+
+/* ---------- Header azul ---------- */
+.registro-header {
+  min-height: 170px;
+  width: 100%;
+  background: var(--registro-blue);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px 28px;
+}
+
+.registro-header__title {
+  margin: 0 0 6px;
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #ffffff;
+  -webkit-text-stroke: 1px #000000;
+  paint-order: stroke fill;
+  text-shadow: 0 3px 0 rgba(0, 0, 0, 0.35), 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.registro-header__subtitle {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #ffffff;
+  -webkit-text-stroke: 0.5px #000000;
+  paint-order: stroke fill;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.3), 0 3px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* ---------- Tarjeta blanca superpuesta ---------- */
+.registro-card {
+  position: relative;
+  margin-top: -28px;
+  background: #ffffff;
+  border-radius: 28px 28px 0 0;
+  padding: 24px 24px 32px;
+}
+
+/* ---------- Botón "Volver" ---------- */
+.registro-back {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--registro-green-dark);
+}
+
+/* ---------- Formulario ---------- */
+.registro-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.registro-input,
+.registro-select {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 999px;
+  padding: 14px 20px;
+  background: var(--registro-green);
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: filter 0.15s ease;
+}
+.registro-input::placeholder {
+  color: rgba(255, 255, 255, 0.85);
+}
+.registro-input:focus,
+.registro-select:focus {
+  filter: brightness(1.05);
+  box-shadow: 0 0 0 3px rgba(140, 198, 63, 0.35);
+}
+
+.registro-select {
+  appearance: none;
+}
+
+.registro-textarea {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  padding: 14px 20px;
+  background: var(--registro-green);
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  min-height: 90px;
+  resize: vertical;
+  transition: filter 0.15s ease;
+}
+.registro-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.85);
+}
+.registro-textarea:focus {
+  filter: brightness(1.05);
+  box-shadow: 0 0 0 3px rgba(140, 198, 63, 0.35);
+}
+
+/* ---------- Campo de contraseña con botón de mostrar/ocultar ---------- */
+.registro-input-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.registro-input--password {
+  padding-right: 46px;
+}
+
+.registro-input-eye {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+}
+.registro-input-eye:hover {
+  color: #ffffff;
+}
+
+/* ---------- Mensajes ---------- */
+.registro-error {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 0.82rem;
+  color: #d64545;
+  text-align: center;
+}
+
+.registro-feedback {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 0.82rem;
+  color: var(--registro-green-dark);
+  text-align: center;
+}
+
+/* ---------- Botón principal (CTA) ---------- */
+.registro-submit {
+  margin-top: 8px;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  border-radius: 999px;
+  padding: 14px;
+  background: var(--registro-orange);
+  color: #ffffff;
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: filter 0.15s ease, opacity 0.15s ease;
+}
+.registro-submit:hover:not(:disabled) {
+  filter: brightness(1.05);
+}
+.registro-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.tipo-usuario-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  background: var(--color-ruta-cream, #eef2f5);
+  gap: 2.5rem;
+}
+
+.tipo-usuario-back {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  font-family: "Inter-SemiBold";
+  color: var(--color-ruta-forest, #0b6e36);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  margin-bottom: -1rem;
+}
+
+.tipo-usuario-header {
+  text-align: center;
+  max-width: 420px;
+}
+
+.tipo-usuario-title {
+  font-family: "Poppins-Bold";
+  font-size: 1.75rem;
+  color: var(--color-ruta-ink, #1f2937);
+  margin-bottom: 0.5rem;
+}
+
+.tipo-usuario-subtitle {
+  font-family: "Inter-Regular";
+  font-size: 1rem;
+  color: var(--color-ruta-ink, #1f2937);
+  opacity: 0.7;
+}
+
+.tipo-usuario-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 420px;
+}
+
+.tipo-usuario-grid--2col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  max-width: 640px;
+}
+
+.tipo-usuario-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border: none;
+  border-radius: 1.25rem;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tipo-usuario-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.tipo-usuario-icon-wrap {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--color-ruta-leaf, #8cc63f);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+.tipo-usuario-card-title {
+  display: block;
+  font-family: "Poppins-SemiBold";
+  font-size: 1.05rem;
+  color: var(--color-ruta-ink, #1f2937);
+}
+
+.tipo-usuario-card-desc {
+  display: block;
+  font-family: "Inter-Regular";
+  font-size: 0.85rem;
+  color: var(--color-ruta-ink, #1f2937);
+  opacity: 0.65;
+  margin-top: 0.15rem;
+}
+
+@media (min-width: 640px) {
+  .tipo-usuario-grid--2col {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.tipo-usuario-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 22px 0 16px;
+  align-self: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-top: -1px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  color: var(--auth-orange);
+}
+.tipo-usuario-link::before,
+.tipo-usuario-link::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--auth-green);
+  opacity: 0.5;
+}
+.tipo-usuario-link span {
+  font-family: "Inter", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--auth-green-dark);
+  white-space: nowrap;
+}
+.tipo-usuario-link:hover {
+  text-decoration: underline;
+}

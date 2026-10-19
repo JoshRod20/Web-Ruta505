@@ -1,0 +1,128 @@
+.registro-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5rem 1.5rem 3rem;
+  background: var(--color-ruta-cream);
+}
+
+.registro-header {
+  text-align: center;
+  max-width: 420px;
+  margin-bottom: 1.75rem;
+}
+
+.registro-title {
+  font-family: "Poppins-Bold";
+  font-size: 1.6rem;
+  color: var(--color-ruta-ink);
+  margin-bottom: 0.4rem;
+}
+
+.registro-subtitle {
+  font-family: "Inter-Regular";
+  font-size: 0.95rem;
+  color: var(--color-ruta-ink);
+  opacity: 0.7;
+}
+
+.registro-form {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.registro-input,
+.registro-select {
+  width: 100%;
+  padding: 0.85rem 1.25rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--color-ruta-leaf);
+  color: #fff;
+  font-family: "Inter-Regular";
+  font-size: 0.95rem;
+}
+
+.registro-input::placeholder {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.registro-textarea {
+  width: 100%;
+  padding: 0.85rem 1.25rem;
+  border: none;
+  border-radius: 1.25rem;
+  background: var(--color-ruta-leaf);
+  color: #fff;
+  font-family: "Inter-Regular";
+  font-size: 0.95rem;
+  min-height: 90px;
+  resize: vertical;
+}
+
+.registro-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.registro-select {
+  appearance: none;
+}
+
+.registro-error {
+  font-family: "Inter-SemiBold";
+  color: #d9534f;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.registro-submit {
+  margin-top: 0.5rem;
+  padding: 0.85rem 1.5rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--color-ruta-sun);
+  color: var(--color-ruta-ink);
+  font-family: "Inter-SemiBold";
+  font-size: 1rem;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.registro-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.registro-input-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.registro-input--password {
+  padding-right: 3rem;
+}
+
+.registro-input-eye {
+  position: absolute;
+  top: 50%;
+  right: 1.1rem;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.registro-input-eye:hover {
+  color: #fff;
+}

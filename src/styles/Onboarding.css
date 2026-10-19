@@ -1,0 +1,910 @@
+/* src/styles/Onboarding.css
+   ===========================================================
+   ORGANIZACIÓN DEL ARCHIVO:
+   1. Variables + reset global
+   2. Estructura compartida (no depende de breakpoint)
+   3. MOBILE        (0px   - 767.98px)
+   4. TABLET        (768px - 1023.98px)
+   5. LAPTOP/DESKTOP (>= 1024px)
+   6. Animaciones y utilidades compartidas
+   =========================================================== */
+
+:root {
+  --ruta-sun: #f5a623;
+  --ruta-white-85: rgba(255, 255, 255, 0.85);
+  --ruta-white-70: rgba(255, 255, 255, 0.7);
+  --ruta-white-50: rgba(255, 255, 255, 0.5);
+  --ruta-ink: #1f2937;
+  --ruta-ink-soft: #64748b;
+}
+
+html:has(.onboarding-page),
+body:has(.onboarding-page) {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* ---------- Colores de "suelo" del footer ---------- */
+.onboarding-footer--sky {
+  background: #bfe3f7;
+}
+.onboarding-footer--grass {
+  background: linear-gradient(180deg, #a5d76a 0%, #7cb342 45%, #558b2f 100%);
+  box-shadow: inset 0 6px 10px -6px rgba(0, 0, 0, 0.25);
+}
+.onboarding-footer--soil {
+  background: linear-gradient(180deg, #c69465 0%, #96693f 45%, #6b4a2c 100%);
+  box-shadow: inset 0 6px 10px -6px rgba(0, 0, 0, 0.25);
+}
+
+/* ---------- Estructura base compartida por todos los tamaños ---------- */
+.onboarding-page {
+  height: 100dvh;
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background: #f1f5f9;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.onboarding-page * {
+  box-sizing: border-box;
+}
+
+.onboarding-lateral {
+  display: none; /* solo se activa en LAPTOP si se decide usar */
+}
+
+.onboarding-card {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #38bdf8, #7dd3fc, #bae6fd);
+}
+
+.onboarding-card__inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.onboarding-skip:focus-visible,
+.onboarding-cta:focus-visible,
+.onboarding-secondary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.7);
+  outline-offset: 2px;
+}
+
+.onboarding-sky {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.onboarding-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.onboarding-dot {
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 9999px;
+  background: var(--ruta-white-50);
+  transition: all 0.3s ease;
+}
+.onboarding-dot--active {
+  width: 1.5rem;
+  background: #fff;
+}
+
+/* ===========================================================
+   MOBILE (0px - 767.98px)
+   Tarjeta a pantalla completa, decoraciones pequeñas,
+   tipografía compacta.
+   =========================================================== */
+@media (max-width: 767.98px) {
+
+  .onboarding-skip {
+    position: absolute;
+    top: max(1rem, env(safe-area-inset-top));
+    right: 1rem;
+    z-index: 30;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: "Inter-SemiBold";
+    font-size: 0.875rem;
+    color: var(--ruta-white-85);
+    transition: color 0.2s ease;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.375rem;
+  }
+  .onboarding-skip:hover {
+    color: #fff;
+  }
+
+  .onboarding-mobile-deco {
+    position: absolute;
+  }
+  .onboarding-mobile-deco--cloud-left {
+    top: 1rem;
+    left: 0.1rem;
+    width: 13rem;
+    max-width: none;
+    opacity: 0.9;
+    z-index: 5;
+  }
+  .onboarding-mobile-deco--cloud-right {
+    top: 7rem;
+    right: 0rem;
+    width: 9rem;
+    max-width: none;
+    opacity: 0.8;
+    z-index: 5;
+  }
+
+  .onboarding-title-wrap {
+    position: relative;
+    z-index: 20;
+    padding-top: 3rem;
+    padding-inline: 1.5rem;
+    text-align: center;
+  }
+
+  .onboarding-title {
+    font-family: "Poppins-Bold";
+    color: #fff;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.15));
+    line-height: 1.3;
+    font-size: clamp(1.2rem, 4.5vw, 1.6rem);
+    margin: 0;
+  }
+
+  .onboarding-subtitle-mobile {
+    display: block;
+    font-family: "Inter-Regular";
+    color: rgba(255, 255, 255, 0.92);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    line-height: 1.5;
+    font-size: clamp(0.85rem, 3vw, 0.975rem);
+    margin: 0.6rem 0 0;
+    max-width: 34ch;
+    margin-inline: auto;
+  }
+
+  .onboarding-subtitle {
+    display: none; /* en mobile se usa .onboarding-subtitle-mobile */
+  }
+
+  .onboarding-illustration {
+    position: absolute;
+    inset: 36% 0 0 0;
+    z-index: 10;
+  }
+
+  .onboarding-scene {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .onboarding-scene--bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 0.5rem;
+  }
+  .onboarding-scene__bg {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    width: 100%;
+    height: 68%;
+    object-fit: cover;
+    object-position: bottom;
+  }
+  .onboarding-scene__rama {
+    position: absolute;
+    bottom: 20%;
+    left: 27%;
+    transform: translateX(-50%);
+    z-index: 10;
+    width: 60%;
+    max-width: 25rem;
+  }
+  .onboarding-scene__pinolito {
+    position: absolute;
+    bottom: 28%;
+    left: 28%;
+    transform: translateX(-50%);
+    z-index: 20;
+    width: 26%;
+    max-width: 15rem;
+    animation: ruta-pop 0.6s ease-out;
+  }
+  .onboarding-scene__catedral {
+    max-height: 100%;
+    max-width: 75%;
+    object-fit: contain;
+  }
+  .onboarding-scene__bailarina {
+    position: absolute;
+    bottom: 1%;
+    right: 20%;
+    width: 25%;
+    max-width: 18rem;
+    z-index: 10;
+  }
+  .onboarding-scene__gigantona {
+    max-height: 100%;
+    max-width: 65%;
+    margin-right: 10rem;
+    object-fit: contain;
+  }
+  .onboarding-scene__flor-left {
+    position: absolute;
+    bottom: 0;
+    left: 0%;
+    width: 30%;
+    max-width: 9rem;
+  }
+  .onboarding-scene__flor-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 30%;
+    max-width: 9rem;
+  }
+
+  .onboarding-footer {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding-inline: 1.5rem;
+    padding-top: 1.25rem;
+    padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+  }
+
+  .onboarding-cta {
+    width: 100%;
+    max-width: 20rem;
+    padding: 0.9rem 1rem;
+    border: none;
+    border-radius: 9999px;
+    background: var(--color-ruta-sun);
+    color: #fff;
+    font-family: "Inter-SemiBold";
+    font-size: clamp(0.95rem, 3vw, 1.05rem);
+    cursor: pointer;
+    transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+    animation:
+      onboarding-fade-in 0.5s ease-out both,
+      cta-pulse 2.1s ease-in-out 0.6s infinite;
+  }
+  .onboarding-cta:hover {
+    transform: translateY(-3px) scale(1.04);
+    filter: brightness(1.05);
+  }
+  .onboarding-cta:active {
+    transform: scale(0.97);
+  }
+
+  .onboarding-secondary {
+    background: none;
+    border: none;
+    font-family: "Inter-Regular";
+    font-size: 0.875rem;
+    color: var(--ruta-white-85);
+    padding: 0.25rem;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  .onboarding-secondary:hover {
+    color: #fff;
+  }
+}
+
+@keyframes ruta-pop {
+  0% { opacity: 0; transform: translateX(-50%) scale(0.7); }
+  100% { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+
+/* ===========================================================
+   TABLET (768px - 1023.98px)
+   Mismo comportamiento visual que mobile por ahora.
+   Ajusta aquí cualquier valor que quieras diferente en tablet
+   sin afectar mobile ni laptop.
+   =========================================================== */
+@media (min-width: 768px) and (max-width: 1023.98px) {
+
+  .onboarding-skip {
+    position: absolute;
+    top: max(1rem, env(safe-area-inset-top));
+    right: 1rem;
+    z-index: 30;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: "Inter-SemiBold";
+    font-size: 0.875rem;
+    color: var(--ruta-white-85);
+    transition: color 0.2s ease;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.375rem;
+  }
+  .onboarding-skip:hover {
+    color: #fff;
+  }
+
+  .onboarding-mobile-deco {
+    position: absolute;
+  }
+  .onboarding-mobile-deco--cloud-left {
+    top: 1rem;
+    left: 0.1rem;
+    width: 13rem;
+    max-width: none;
+    opacity: 0.9;
+    z-index: 5;
+  }
+  .onboarding-mobile-deco--cloud-right {
+    top: 7rem;
+    right: 0rem;
+    width: 9rem;
+    max-width: none;
+    opacity: 0.8;
+    z-index: 5;
+  }
+
+  .onboarding-title-wrap {
+    position: relative;
+    z-index: 20;
+    padding-top: 3rem;
+    padding-inline: 1.5rem;
+    text-align: center;
+  }
+
+  .onboarding-title {
+    font-family: "Poppins-Bold";
+    color: #fff;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.15));
+    line-height: 1.3;
+    font-size: clamp(1.2rem, 4.5vw, 1.6rem);
+    margin: 0;
+  }
+
+  .onboarding-subtitle-mobile {
+    display: block;
+    font-family: "Inter-Regular";
+    color: rgba(255, 255, 255, 0.92);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    line-height: 1.5;
+    font-size: clamp(0.85rem, 3vw, 0.975rem);
+    margin: 0.6rem 0 0;
+    max-width: 34ch;
+    margin-inline: auto;
+  }
+
+  .onboarding-subtitle {
+    display: none; /* en tablet también se usa .onboarding-subtitle-mobile */
+  }
+
+  .onboarding-illustration {
+    position: absolute;
+    inset: 36% 0 0 0;
+    z-index: 10;
+  }
+
+  .onboarding-scene {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .onboarding-scene--bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 0.5rem;
+  }
+  .onboarding-scene__bg {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    width: 100%;
+    height: 68%;
+    object-fit: cover;
+    object-position: bottom;
+  }
+  .onboarding-scene__rama {
+    position: absolute;
+    bottom: 20%;
+    left: 26%;
+    transform: translateX(-50%);
+    z-index: 10;
+    width: 60%;
+    max-width: 25rem;
+  }
+  .onboarding-scene__pinolito {
+    position: absolute;
+    bottom: 31%;
+    left: 28%;
+    transform: translateX(-50%);
+    z-index: 20;
+    width: 26%;
+    max-width: 15rem;
+    animation: ruta-pop 0.6s ease-out;
+  }
+  .onboarding-scene__catedral {
+    max-height: 100%;
+    max-width: 75%;
+    object-fit: contain;
+  }
+  .onboarding-scene__bailarina {
+    position: absolute;
+    bottom: 1%;
+    right: 20%;
+    width: 25%;
+    max-width: 18rem;
+    z-index: 10;
+  }
+  .onboarding-scene__gigantona {
+    max-height: 100%;
+    max-width: 65%;
+    margin-right: 33.5rem;
+    object-fit: contain;
+  }
+  .onboarding-scene__flor-left {
+    position: absolute;
+    bottom: 0;
+    left: 0%;
+    width: 30%;
+    max-width: 9rem;
+  }
+  .onboarding-scene__flor-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 30%;
+    max-width: 9rem;
+  }
+
+  .onboarding-footer {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding-inline: 1.5rem;
+    padding-top: 1.25rem;
+    padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+  }
+
+  .onboarding-cta {
+    width: 100%;
+    max-width: 20rem;
+    padding: 0.9rem 1rem;
+    border: none;
+    border-radius: 9999px;
+    background: var(--color-ruta-sun);
+    color: #fff;
+    font-family: "Inter-SemiBold";
+    font-size: clamp(0.95rem, 3vw, 1.05rem);
+    cursor: pointer;
+    transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+    animation:
+      onboarding-fade-in 0.5s ease-out both,
+      cta-pulse 2.1s ease-in-out 0.6s infinite;
+  }
+  .onboarding-cta:hover {
+    transform: translateY(-3px) scale(1.04);
+    filter: brightness(1.05);
+  }
+  .onboarding-cta:active {
+    transform: scale(0.97);
+  }
+
+  .onboarding-secondary {
+    background: none;
+    border: none;
+    font-family: "Inter-Regular";
+    font-size: 0.875rem;
+    color: var(--ruta-white-85);
+    padding: 0.25rem;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  .onboarding-secondary:hover {
+    color: #fff;
+  }
+}
+
+/* ===========================================================
+   LAPTOP / DESKTOP (>= 1024px)
+   Split-screen: ilustración a pantalla completa a la izquierda,
+   panel de contenido a la derecha.
+   =========================================================== */
+@media (min-width: 1024px) {
+
+  .onboarding-page {
+    gap: 0;
+    padding: 0;
+    background: #fff;
+  }
+
+  .onboarding-lateral {
+    display: none; /* la ilustración principal ya ocupa el panel izquierdo */
+  }
+
+  .onboarding-card {
+    width: 100%;
+    height: 100dvh;
+    border-radius: 0;
+    box-shadow: none;
+    background: none;
+  }
+
+  .onboarding-card__inner {
+    flex-direction: row;
+    height: 100%;
+  }
+
+  /* ---- Panel izquierdo: ilustración a pantalla completa ---- */
+  .onboarding-sky {
+    flex: 1.35 1 0;
+    height: 100%;
+    background: linear-gradient(to bottom, #38bdf8, #7dd3fc, #bae6fd);
+  }
+
+  /* Degradado oscuro abajo del panel izquierdo para que el
+     título siempre sea legible sobre cualquier ilustración */
+  .onboarding-sky::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 45%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.35), transparent);
+    z-index: 15;
+    pointer-events: none;
+  }
+
+  .onboarding-sky--grass::before {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 16%;
+    background: linear-gradient(180deg, #a5d76a 0%, #7cb342 45%, #558b2f 100%);
+    box-shadow: inset 0 6px 10px -6px rgba(0, 0, 0, 0.25);
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .onboarding-sky--soil::before {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 16%;
+    background: linear-gradient(180deg, #c69465 0%, #96693f 45%, #6b4a2c 100%);
+    box-shadow: inset 0 6px 10px -6px rgba(0, 0, 0, 0.25);
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .onboarding-skip {
+    position: absolute;
+    top: 1.75rem;
+    right: 2.5rem;
+    color: var(--ruta-ink-soft);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: "Inter-SemiBold";
+    font-size: 0.875rem;
+    z-index: 30;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.375rem;
+    transition: color 0.2s ease;
+  }
+  .onboarding-skip:hover {
+    color: var(--ruta-ink);
+  }
+
+  .onboarding-mobile-deco {
+    position: absolute;
+  }
+  .onboarding-mobile-deco--cloud-left {
+    top: 1rem;
+    left: 0.1rem;
+    width: 13rem;
+    max-width: none;
+    opacity: 0.9;
+    z-index: 5;
+  }
+  .onboarding-mobile-deco--cloud-right {
+    top: 7rem;
+    right: 0rem;
+    width: 9rem;
+    max-width: none;
+    opacity: 0.8;
+    z-index: 5;
+  }
+
+  .onboarding-title-wrap {
+    position: absolute;
+    inset: auto 0 3.5rem 0;
+    top: 12%;
+    padding-inline: 4rem;
+    text-align: left;
+    margin-left: 1.6rem;
+    z-index: 20;
+  }
+
+  .onboarding-title {
+    font-family: "Poppins-Bold";
+    color: #fff;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.15));
+    font-size: clamp(2rem, 3.2vw, 3rem);
+    max-width: 26ch;
+    line-height: 1.2;
+  }
+
+  /* En desktop, el subtítulo se muestra en el panel derecho */
+  .onboarding-subtitle-mobile {
+    display: none;
+  }
+
+  .onboarding-illustration {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+  }
+
+  .onboarding-scene {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .onboarding-scene--bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 0.5rem;
+  }
+  .onboarding-scene__bg {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    width: 100%;
+    height: 62%;
+    object-fit: cover;
+    object-position: bottom;
+  }
+  .onboarding-scene__catedral,
+  .onboarding-scene__gigantona {
+    max-width: 55%;
+  }
+  .onboarding-scene__rama {
+    position: absolute;
+    bottom: 20%;
+    left: 27%;
+    transform: translateX(-50%);
+    z-index: 10;
+    width: 60%;
+    max-width: 25rem;
+  }
+  .onboarding-scene__pinolito {
+    position: absolute;
+    bottom: 27%;
+    left: 28%;
+    transform: translateX(-50%);
+    z-index: 20;
+    width: 26%;
+    max-width: 15rem;
+    animation: ruta-pop 0.6s ease-out;
+  }
+  .onboarding-scene__catedral {
+    max-height: 100%;
+    object-fit: contain;
+  }
+  .onboarding-scene__bailarina {
+    position: absolute;
+    bottom: 1%;
+    right: 20%;
+    width: 25%;
+    max-width: 18rem;
+    z-index: 10;
+  }
+  .onboarding-scene__gigantona {
+    max-height: 100%;
+    margin-right: 29rem;
+    object-fit: contain;
+  }
+  .onboarding-scene__flor-left {
+    position: absolute;
+    bottom: 7rem;
+    left: 0%;
+    width: 30%;
+    max-width: 9rem;
+  }
+  .onboarding-scene__flor-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 30%;
+    max-width: 9rem;
+  }
+
+  /* ---- Panel derecho: contenido ---- */
+  .onboarding-footer {
+    flex: 1 1 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1.75rem;
+    padding: 0 5rem;
+    background: #ffffff !important;
+    box-shadow: none !important;
+  }
+
+  .onboarding-subtitle {
+    display: block;
+    font-family: "Poppins-SemiBold";
+    color: var(--ruta-ink-soft);
+    line-height: 1.6;
+    margin: 0 0 0.5rem;
+    font-size: 1.05rem;
+    max-width: 34ch;
+  }
+
+  .onboarding-dots {
+    align-self: flex-start;
+  }
+
+  .onboarding-cta {
+    width: auto;
+    min-width: 14rem;
+    padding: 1rem 2.5rem;
+    font-size: 1.05rem;
+    align-self: flex-start;
+    border: none;
+    border-radius: 9999px;
+    background: var(--color-ruta-sun);
+    color: #fff;
+    font-family: "Inter-SemiBold";
+    cursor: pointer;
+    transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+    animation:
+      onboarding-fade-in 0.5s ease-out both,
+      cta-pulse 2.1s ease-in-out 0.6s infinite;
+  }
+  .onboarding-cta:hover {
+    transform: translateY(-3px) scale(1.04);
+    filter: brightness(1.05);
+  }
+  .onboarding-cta:active {
+    transform: scale(0.97);
+  }
+
+  .onboarding-secondary {
+    background: none;
+    border: none;
+    font-family: "Inter-Regular";
+    font-size: 0.875rem;
+    color: var(--ruta-ink-soft);
+    align-self: flex-start;
+    padding: 0.25rem;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  .onboarding-secondary:hover {
+    color: var(--ruta-ink);
+  }
+}
+
+/* ---- Ajuste fino para pantallas grandes ---- */
+@media (min-width: 1440px) {
+  .onboarding-sky::after {
+    height: 40%;
+  }
+  .onboarding-footer {
+    padding: 0 7rem;
+  }
+}
+
+/* ===========================================================
+   ANIMACIONES Y UTILIDADES COMPARTIDAS
+   No dependen de breakpoint — aplican igual en mobile,
+   tablet y laptop.
+   =========================================================== */
+
+.onboarding-cloud--carousel-a,
+.onboarding-cloud--carousel-b {
+  --parallax-x: 0px;
+  --parallax-y: 0px;
+  transform: translate(var(--parallax-x), var(--parallax-y));
+  will-change: left, transform;
+}
+
+@keyframes cloud-carousel {
+  0% {
+    left: -25%;
+  }
+  100% {
+    left: 115%;
+  }
+}
+
+.onboarding-cloud--carousel-a {
+  animation: cloud-carousel 26s linear infinite;
+}
+
+.onboarding-cloud--carousel-b {
+  animation: cloud-carousel 34s linear infinite;
+  animation-delay: -14s;
+}
+
+@keyframes onboarding-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.onboarding-anim-in {
+  animation: onboarding-fade-in 0.5s ease-out both;
+}
+
+.onboarding-anim-in--delay-1 {
+  animation-delay: 0.08s;
+}
+
+.onboarding-anim-in--delay-2 {
+  animation-delay: 0.16s;
+}
+
+.onboarding-anim-in--illustration {
+  width: 100%;
+  height: 100%;
+}
+
+.onboarding-cta.onboarding-anim-in {
+  animation:
+    onboarding-fade-in 0.5s ease-out both,
+    cta-pulse 2.1s ease-in-out 0.6s infinite;
+}
+
+@keyframes cta-pulse {
+  0% {
+    transform: scale(1);
+    box-shadow:
+      0 8px 20px rgba(247, 148, 29, 0.25),
+      0 0 0 0 rgba(247, 148, 29, 0.35);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow:
+      0 12px 28px rgba(247, 148, 29, 0.35),
+      0 0 0 14px rgba(247, 148, 29, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 8px 20px rgba(247, 148, 29, 0.25),
+      0 0 0 0 rgba(247, 148, 29, 0);
+  }
+}

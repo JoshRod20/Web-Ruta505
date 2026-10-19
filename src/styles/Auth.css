@@ -1,0 +1,363 @@
+/* src/styles/Auth.css
+   ===========================================================
+   Pantallas de Registrarse / Iniciar sesión.
+   Header azul + tarjeta blanca superpuesta, inputs en píldora
+   verde, CTA naranja — según el diseño de referencia.
+   =========================================================== */
+
+:root {
+  --auth-green: var(--color-ruta-leaf, #8cc63f);
+  --auth-green-dark: var(--color-ruta-forest, #0b6e36);
+  --auth-blue: var(--color-ruta-sky, #29abe2);
+  --auth-orange: var(--color-ruta-sun, #f7941d);
+  --auth-page-bg: #eef2f5;
+}
+
+.auth-page {
+  min-height: 100dvh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--auth-page-bg);
+  padding: 24px 16px;
+  box-sizing: border-box;
+}
+.auth-page * {
+  box-sizing: border-box;
+}
+
+.auth-shell {
+  width: 100%;
+  max-width: 380px;
+  background: #ffffff;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 24px 50px -24px rgba(15, 23, 42, 0.35);
+}
+
+/* ---------- Header azul ---------- */
+.auth-header {
+  height: 170px;
+  width: 100%;
+  background: var(--auth-blue);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 28px;
+}
+
+.auth-header__title {
+  margin: 0 0 6px;
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #ffffff;
+  -webkit-text-stroke: 1px #000000;
+  paint-order: stroke fill;
+  text-shadow: 0 3px 0 rgba(0, 0, 0, 0.35), 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.auth-header__subtitle {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #ffffff;
+  -webkit-text-stroke: 0.5px #000000;
+  paint-order: stroke fill;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.3), 0 3px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* ---------- Tarjeta blanca superpuesta ---------- */
+.auth-card {
+  position: relative;
+  margin-top: -28px;
+  background: #ffffff;
+  border-radius: 28px 28px 0 0;
+  padding: 24px 24px 32px;
+}
+
+/* ---------- Toggle Registrarse / Iniciar sesión ---------- */
+.auth-toggle {
+  display: flex;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+}
+
+.auth-toggle__btn {
+  flex: 1;
+  border: none;
+  cursor: pointer;
+  padding: 12px 8px;
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #ffffff;
+  background: var(--auth-blue);
+  transition: background 0.2s ease, flex 0.2s ease;
+}
+
+.auth-toggle__btn--active {
+  background: var(--auth-green);
+  flex: 1.15;
+}
+
+.auth-toggle__btn--inactive {
+  background: var(--auth-blue);
+  opacity: 0.9;
+}
+
+/* ---------- Formulario ---------- */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.auth-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 999px;
+  padding: 14px 20px;
+  background: var(--auth-green);
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: filter 0.15s ease;
+}
+.auth-input::placeholder {
+  color: rgba(255, 255, 255, 0.85);
+}
+.auth-input:focus {
+  filter: brightness(1.05);
+  box-shadow: 0 0 0 3px rgba(140, 198, 63, 0.35);
+}
+
+/* ---------- Campo de contraseña con botón de mostrar/ocultar ---------- */
+.auth-input-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.auth-input--password {
+  padding-right: 46px;
+}
+
+.auth-input-eye {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+}
+.auth-input-eye:hover {
+  color: #ffffff;
+}
+
+.auth-forgot {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-top: -6px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--auth-orange);
+}
+.auth-forgot:hover {
+  text-decoration: underline;
+}
+
+.auth-error {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 0.82rem;
+  color: #d64545;
+  text-align: center;
+}
+
+.auth-feedback {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 0.82rem;
+  color: var(--auth-green-dark);
+  text-align: center;
+}
+
+/* ---------- Ubicación (solo registro) ---------- */
+.auth-location-row {
+  display: flex;
+  justify-content: center;
+  margin: 2px 0;
+}
+
+.auth-location {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--auth-blue);
+  font-size: 1.3rem;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+.auth-location:hover {
+  transform: translateY(-1px);
+}
+.auth-location--active {
+  color: var(--auth-green-dark);
+}
+
+/* ---------- Botón principal (CTA) ---------- */
+.auth-submit {
+  margin-top: 8px;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  border-radius: 999px;
+  padding: 14px;
+  background: var(--auth-orange);
+  color: #ffffff;
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: filter 0.15s ease, opacity 0.15s ease;
+}
+.auth-submit:hover:not(:disabled) {
+  filter: brightness(1.05);
+}
+.auth-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* ---------- Selector de idioma (solo registro) ---------- */
+.auth-language {
+  display: block;
+  margin: 16px auto 0;
+  border: none;
+  cursor: pointer;
+  border-radius: 999px;
+  padding: 10px 22px;
+  background: var(--auth-blue);
+  color: #ffffff;
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* ---------- Divider "O inicia sesión con" ---------- */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 22px 0 16px;
+}
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--auth-green);
+  opacity: 0.5;
+}
+.auth-divider span {
+  font-family: "Inter", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--auth-green-dark);
+  white-space: nowrap;
+}
+
+/* ---------- Botones sociales ---------- */
+.auth-socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.auth-social-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.15rem;
+  transition: transform 0.15s ease;
+}
+.auth-social-btn:hover {
+  transform: translateY(-2px);
+}
+.auth-social-btn--facebook {
+  color: #1877f2;
+}
+.auth-social-btn--google {
+  color: #ea4335;
+}
+.auth-social-btn--apple {
+  color: #111111;
+}
+
+/* ---------- "¿No tienes cuenta? Regístrate" ---------- */
+.auth-switch {
+  text-align: center;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  color: var(--auth-green-dark);
+}
+.auth-switch button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--auth-orange);
+}
+.auth-switch button:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Enlace "explorar sin cuenta" ---------- */
+.auth-guest {
+  display: block;
+  margin: 18px auto 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
+  color: rgba(15, 23, 42, 0.4);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

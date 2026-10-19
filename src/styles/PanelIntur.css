@@ -1,0 +1,252 @@
+.panel-intur-page {
+  min-height: 100vh;
+  padding: 2rem 1.5rem 3rem;
+  background: var(--color-ruta-cream);
+}
+
+.panel-intur-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 900px;
+  margin: 0 auto 1.5rem;
+}
+
+.panel-intur-title {
+  font-family: "Poppins-Bold";
+  font-size: 1.5rem;
+  color: var(--color-ruta-ink);
+}
+
+.panel-intur-logout {
+  width: auto;
+  padding: 0.6rem 1.25rem;
+  font-size: 0.85rem;
+}
+
+.panel-intur-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  max-width: 900px;
+  margin: 0 auto 1.5rem;
+}
+
+.panel-intur-tab {
+  border: none;
+  border-radius: 999px;
+  padding: 0.6rem 1.1rem;
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--color-ruta-ink);
+  font-family: "Inter-SemiBold";
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.panel-intur-tab--activa {
+  background: var(--color-ruta-leaf);
+  color: #fff;
+}
+
+.panel-intur-badge {
+  background: var(--color-ruta-sun);
+  color: var(--color-ruta-ink);
+  border-radius: 999px;
+  font-size: 0.7rem;
+  padding: 0.1rem 0.45rem;
+  font-family: "Inter-SemiBold";
+}
+
+.panel-intur-mensaje {
+  text-align: center;
+  color: var(--color-ruta-ink);
+  opacity: 0.7;
+  font-family: "Inter-Regular";
+  margin-top: 2rem;
+}
+
+.panel-intur-error {
+  text-align: center;
+  color: #d9534f;
+  font-family: "Inter-SemiBold";
+  margin-bottom: 1rem;
+}
+
+.panel-intur-lista {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.panel-intur-card {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.panel-intur-campo {
+  font-family: "Inter-Regular";
+  font-size: 0.9rem;
+  color: var(--color-ruta-ink);
+  margin-bottom: 0.4rem;
+}
+
+.panel-intur-acciones {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.panel-intur-btn {
+  flex: 1;
+  border: none;
+  border-radius: 999px;
+  padding: 0.6rem 1rem;
+  font-family: "Inter-SemiBold";
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.panel-intur-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.panel-intur-btn--aprobar {
+  background: var(--color-ruta-leaf);
+  color: #fff;
+}
+
+.panel-intur-btn--rechazar {
+  background: #d9534f;
+  color: #fff;
+}
+
+.panel-intur-crear-wrap {
+  max-width: 900px;
+  margin: 0 auto 1.5rem;
+}
+
+.panel-intur-btn--crear {
+  background: var(--color-ruta-sun);
+  color: var(--color-ruta-ink);
+  width: auto;
+  padding: 0.6rem 1.25rem;
+}
+
+.panel-intur-crear-form {
+  margin-top: 0.75rem;
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 420px;
+}
+
+.panel-intur-input {
+  width: 100%;
+  padding: 0.7rem 1.1rem;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 999px;
+  font-family: "Inter-Regular";
+  font-size: 0.9rem;
+}
+
+.panel-intur-exito {
+  font-family: "Inter-SemiBold";
+  color: var(--color-ruta-leaf);
+  font-size: 0.85rem;
+}
+
+.panel-intur-btn--suspender {
+  background: var(--color-ruta-sun);
+  color: var(--color-ruta-ink);
+}
+
+/* Botón sin clase de color extra (ej. "Cancelar"): fondo neutro. */
+.panel-intur-btn:not(
+    .panel-intur-btn--aprobar,
+    .panel-intur-btn--rechazar,
+    .panel-intur-btn--suspender
+  ) {
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--color-ruta-ink);
+}
+
+.panel-intur-vistas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  max-width: 900px;
+  margin: 0 auto 1rem;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+  padding-bottom: 0.75rem;
+}
+
+.panel-intur-vista {
+  border: none;
+  background: none;
+  padding: 0.5rem 1rem;
+  font-family: "Inter-SemiBold";
+  font-size: 0.95rem;
+  color: var(--color-ruta-ink);
+  opacity: 0.6;
+  cursor: pointer;
+  border-radius: 999px;
+}
+
+.panel-intur-vista--activa {
+  opacity: 1;
+  background: var(--color-ruta-ink);
+  color: #fff;
+}
+
+.panel-intur-form-sancion {
+  margin-top: 0.9rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.panel-intur-input {
+  width: 100%;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 999px;
+  font-family: "Inter-Regular";
+  font-size: 0.85rem;
+}
+
+.panel-intur-dias-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.panel-intur-input--dias {
+  width: 5rem;
+}
+
+.panel-intur-dias-label {
+  font-family: "Inter-Regular";
+  font-size: 0.85rem;
+  color: var(--color-ruta-ink);
+  opacity: 0.7;
+}
+
+.panel-intur-form-acciones {
+  display: flex;
+  gap: 0.6rem;
+}
