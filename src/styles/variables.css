@@ -1,0 +1,13 @@
+:root {
+  --r505-green-dark: #065f2e;
+  --r505-green-lime: #8dc21f;
+  --r505-blue: #0a9be0;
+  --r505-orange: #f7941d;
+  --r505-grass: #7fa616;
+  --r505-text: #1a1a1a;
+  --r505-field: #f4f4f4;
+  --r505-danger: #b3261e;
+
+  --font-heading: 'Poppins', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}

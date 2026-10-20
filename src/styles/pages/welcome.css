@@ -1,0 +1,27 @@
+.welcome__mascot {
+  position: absolute;
+  left: 50%;
+  bottom: 4%;
+  transform: translateX(-50%);
+  width: min(70%, 380px);
+  height: auto;
+}
+
+.welcome__body {
+  width: 100%;
+  max-width: 260px;
+}
+
+.welcome__logo {
+  width: 100%;
+  max-width: 190px;
+  margin-bottom: 2rem;
+}
+
+.welcome__tagline {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.35;
+  margin-bottom: 2.5rem;
+}

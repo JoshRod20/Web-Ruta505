@@ -1,0 +1,79 @@
+.login__logo {
+  position: absolute;
+  top: 6%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(55%, 300px);
+}
+
+.login__mascot {
+  position: absolute;
+  left: 50%;
+  bottom: 4%;
+  transform: translateX(-50%);
+  width: min(80%, 300px);
+  height: auto;
+}
+
+.login__back {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  border: 0;
+  background: none;
+  color: var(--r505-green-dark);
+  line-height: 0;
+  padding: 0.25rem;
+}
+
+.login__form {
+  width: 100%;
+  max-width: 350px;
+}
+
+.login__title {
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--r505-green-dark);
+  margin-bottom: 0.25rem;
+}
+
+.login__subtitle {
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  white-space: nowrap;
+}
+
+.login__subtitle strong {
+  color: var(--r505-green-dark);
+  font-weight: 700;
+}
+
+.login__forgot {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--r505-green-dark);
+  text-decoration: none;
+}
+
+.login__forgot:hover {
+  text-decoration: underline;
+}
+
+.login__error {
+  color: var(--r505-danger);
+  font-size: 0.75rem;
+  margin: 1rem 0 0;
+}
+
+/* En pantallas pequeñas se permite el salto de línea para que no se desborde */
+@media (max-width: 575.98px) {
+  .login__subtitle {
+    white-space: normal;
+  }
+}

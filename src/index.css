@@ -1,13 +1,11 @@
-@import "tailwindcss";
+/* Punto de entrada de estilos: el orden de los imports importa */
+@import './styles/fonts.css';
+@import './styles/variables.css';
+@import './styles/base.css';
 
-@theme {
-  --color-ruta-forest: #0b6e36;
-  --color-ruta-ink: #123524;
-  --color-ruta-leaf: #8cc63f;
-  --color-ruta-sky: #29abe2;
-  --color-ruta-sun: #f7941d;
-  --color-ruta-cream: #fbf6ec;
+@import './styles/components/button.css';
+@import './styles/components/fields.css';
+@import './styles/components/split-layout.css';
 
-  --font-display: "Baloo 2", sans-serif;
-  --font-body: "Inter", sans-serif;
-}
+@import './styles/pages/welcome.css';
+@import './styles/pages/login.css';

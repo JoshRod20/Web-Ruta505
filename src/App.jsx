@@ -1,10 +1,5 @@
-import AppRouter from "./routes/AppRouter";
-import { AuthProvider } from "./context/AuthContext";
+import AppNavigator from './navigation/AppNavigator';
 
-const App = () => (
-  <AuthProvider>
-    <AppRouter />
-  </AuthProvider>
-);
-
-export default App;
+export default function App() {
+  return <AppNavigator />;
+}
