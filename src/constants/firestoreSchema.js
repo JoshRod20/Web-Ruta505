@@ -13,9 +13,12 @@ export const USER_ROLES = {
 
 export const USER_FIELDS = {
   role: 'role',
-  // Se prueban en orden; si ninguno tiene valor, statsService busca
+  // Se prueban en orden; si ninguno tiene valor, userFields.js busca
   // automáticamente cualquier campo que contenga "municip".
   municipality: ['municipio', 'ubicacion.municipio'],
+  tourismCategory: ['tipoTurismo'], // categoría de turismo que ofrece el actor
+  actorType: ['tipoActor'], // tipo de actor (emprendedor, etc.)
+  createdAt: 'createdAt', // fecha de registro (Timestamp)
 };
 
 export const ROUTE_FIELDS = {

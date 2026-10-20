@@ -7,78 +7,31 @@ import {
   ROUTE_FIELDS,
   ROUTE_STATUS,
 } from '../constants/firestoreSchema';
+import { MONTHS_TO_SHOW, MAX_PIE_SLICES } from '../constants/chartConfig';
+import { listFieldPaths, readDate, readFirstText, readMunicipality } from '../utils/userFields';
+import {
+  capitalize,
+  countByLabel,
+  countByMonth,
+  limitWithOthers,
+  normalizeKey,
+} from '../utils/chartData';
 
 // Pon true para ver en consola cómo se calcularon los municipios.
 const DEBUG_MUNICIPALITIES = true;
 
-const MUNICIPALITY_KEY = /municip/i;
-
-// "León", "leon" y " LEÓN " cuentan como el mismo municipio.
-const normalize = (text) =>
-  text.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-
-const isPlainObject = (value) =>
-  value !== null &&
-  typeof value === 'object' &&
-  !Array.isArray(value) &&
-  typeof value.toDate !== 'function'; // excluye Timestamps
-
-// Busca en el documento cualquier campo cuyo nombre contenga "municip",
-// a cualquier profundidad (por ejemplo `ubicacion.municipio`).
-function deepFindMunicipality(data, path = '', depth = 0) {
-  if (!isPlainObject(data) || depth > 3) return null;
-
-  for (const [key, child] of Object.entries(data)) {
-    const childPath = path ? `${path}.${key}` : key;
-
-    if (MUNICIPALITY_KEY.test(key)) {
-      if (typeof child === 'string' && child.trim()) {
-        return { path: childPath, value: child.trim() };
-      }
-      // Por si el municipio es un objeto con el nombre dentro
-      const nested = isPlainObject(child) ? (child.nombre ?? child.name) : null;
-      if (typeof nested === 'string' && nested.trim()) {
-        return { path: `${childPath}.nombre`, value: nested.trim() };
-      }
-    }
-
-    const found = deepFindMunicipality(child, childPath, depth + 1);
-    if (found) return found;
-  }
-  return null;
-}
-
-// Primero los campos configurados; si no hay, la búsqueda automática.
-function readMunicipality(doc) {
-  for (const field of USER_FIELDS.municipality) {
-    const value = doc.get(field);
-    if (typeof value === 'string' && value.trim()) {
-      return { path: field, value: value.trim() };
-    }
-  }
-  return deepFindMunicipality(doc.data());
-}
-
-// Lista las rutas de campos de un documento (para el diagnóstico).
-function listFieldPaths(data, path = '', depth = 0, out = []) {
-  if (!isPlainObject(data) || depth > 3) return out;
-  Object.entries(data).forEach(([key, child]) => {
-    const childPath = path ? `${path}.${key}` : key;
-    out.push(childPath);
-    listFieldPaths(child, childPath, depth + 1, out);
-  });
-  return out;
-}
+const EMPTY_CHARTS = { category: [], actorType: [], monthly: [], municipality: [] };
 
 /**
- * Se suscribe a los datos de las tarjetas y llama a `onChange` cada vez que
- * algo cambia en Firestore:
- *   onChange({ stats, loading, failed, errors })
+ * Se suscribe a los datos del inicio y llama a `onChange` cada vez que algo
+ * cambia en Firestore:
+ *   onChange({ stats, charts, loading, failed, errors })
  * Devuelve una función para cancelar las suscripciones.
  */
 export function subscribeDashboardStats(onChange) {
   const state = {
     stats: { tourists: null, culturalActors: null, routes: null, municipalities: null },
+    charts: EMPTY_CHARTS,
     pending: new Set(['users', 'routes']), // fuentes que aún no responden por primera vez
     errors: {}, // fuente -> mensaje
   };
@@ -86,6 +39,7 @@ export function subscribeDashboardStats(onChange) {
   const publish = () =>
     onChange({
       stats: { ...state.stats },
+      charts: state.charts,
       loading: state.pending.size > 0,
       failed: Object.keys(state.errors).length > 0,
       errors: Object.entries(state.errors).map(([source, message]) => `${source}: ${message}`),
@@ -110,28 +64,44 @@ export function subscribeDashboardStats(onChange) {
     }
   };
 
-  // Todas las cuentas: turistas y actores se cuentan por rol, y los municipios
-  // salen de cualquier cuenta que tenga el campo.
+  // Una sola suscripción a `users` alimenta las tarjetas y los gráficos.
   const unsubscribeUsers = onSnapshot(
     collection(db, COLLECTIONS.users),
     safely('users', (snap) => {
       let tourists = 0;
       let actors = 0;
-      const municipalities = new Map(); // clave normalizada -> texto original
+      const uniqueMunicipalities = new Map(); // clave normalizada -> texto original
+
+      // Datos de los actores culturales para los gráficos
+      const categories = [];
+      const actorTypes = [];
+      const actorMunicipalities = [];
+      const registrationDates = [];
+
+      // Diagnóstico
       const withoutMunicipality = [];
-      const sourcePaths = {}; // de qué campo salió cada municipio
-      const missingFields = {}; // campos que tienen las cuentas sin municipio
+      const sourcePaths = {};
+      const missingFields = {};
 
       snap.forEach((doc) => {
         const role = doc.get(USER_FIELDS.role);
-        if (role === USER_ROLES.tourist) tourists += 1;
-        if (role === USER_ROLES.culturalActor) actors += 1;
+        const municipality = readMunicipality(doc);
 
-        const found = readMunicipality(doc);
-        if (found) {
-          const key = normalize(found.value);
-          if (!municipalities.has(key)) municipalities.set(key, found.value);
-          sourcePaths[found.path] = (sourcePaths[found.path] ?? 0) + 1;
+        if (role === USER_ROLES.tourist) tourists += 1;
+
+        if (role === USER_ROLES.culturalActor) {
+          actors += 1;
+          categories.push(readFirstText(doc, USER_FIELDS.tourismCategory));
+          actorTypes.push(readFirstText(doc, USER_FIELDS.actorType));
+          actorMunicipalities.push(municipality?.value ?? null);
+          registrationDates.push(readDate(doc, USER_FIELDS.createdAt));
+        }
+
+        if (municipality) {
+          // Municipios de todas las cuentas, sin repetir
+          const key = normalizeKey(municipality.value);
+          if (!uniqueMunicipalities.has(key)) uniqueMunicipalities.set(key, municipality.value);
+          sourcePaths[municipality.path] = (sourcePaths[municipality.path] ?? 0) + 1;
         } else {
           withoutMunicipality.push({ id: doc.id, role });
           listFieldPaths(doc.data()).forEach((p) => {
@@ -141,8 +111,10 @@ export function subscribeDashboardStats(onChange) {
       });
 
       if (DEBUG_MUNICIPALITIES) {
-        console.groupCollapsed(`[stats] ${snap.size} cuentas, ${municipalities.size} municipios distintos`);
-        console.log('Municipios:', [...municipalities.values()]);
+        console.groupCollapsed(
+          `[stats] ${snap.size} cuentas, ${uniqueMunicipalities.size} municipios distintos`
+        );
+        console.log('Municipios:', [...uniqueMunicipalities.values()]);
         console.log('Campo de origen (cuentas por campo):', sourcePaths);
         console.log(`Cuentas sin municipio (${withoutMunicipality.length}):`, withoutMunicipality);
         console.log('Campos que tienen esas cuentas:', missingFields);
@@ -151,7 +123,17 @@ export function subscribeDashboardStats(onChange) {
 
       state.stats.tourists = tourists;
       state.stats.culturalActors = actors;
-      state.stats.municipalities = municipalities.size;
+      state.stats.municipalities = uniqueMunicipalities.size;
+
+      state.charts = {
+        category: countByLabel(categories, { emptyLabel: 'Sin categoría', format: capitalize }),
+        actorType: countByLabel(actorTypes, { emptyLabel: 'Sin tipo', format: capitalize }),
+        monthly: countByMonth(registrationDates, MONTHS_TO_SHOW),
+        municipality: limitWithOthers(
+          countByLabel(actorMunicipalities, { emptyLabel: 'Sin municipio' }),
+          MAX_PIE_SLICES
+        ),
+      };
     }),
     fail('users')
   );

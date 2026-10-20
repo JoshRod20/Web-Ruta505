@@ -3,6 +3,7 @@ import { subscribeDashboardStats } from '../services/statsService';
 
 const INITIAL = {
   stats: { tourists: null, culturalActors: null, routes: null, municipalities: null },
+  charts: { category: [], actorType: [], monthly: [], municipality: [] },
   loading: true,
   failed: false,
   errors: [],

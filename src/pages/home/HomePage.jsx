@@ -1,9 +1,15 @@
 import StatCard from '../../components/dashboard/StatCard';
+import ChartCard from '../../components/dashboard/charts/ChartCard';
+import BarsChart from '../../components/dashboard/charts/BarsChart';
+import MonthlyLineChart from '../../components/dashboard/charts/MonthlyLineChart';
+import MunicipalityPieChart from '../../components/dashboard/charts/MunicipalityPieChart';
 import useDashboardStats from '../../hooks/useDashboardStats';
 import { STAT_CARDS } from '../../constants/statCards';
 
 export default function HomePage() {
-  const { stats, loading, failed, reload } = useDashboardStats();
+  const { stats, charts, loading, failed, errors, reload } = useDashboardStats();
+
+  const monthlyTotal = charts.monthly.reduce((sum, month) => sum + month.value, 0);
 
   return (
     <>
@@ -14,7 +20,10 @@ export default function HomePage() {
 
       {failed && !loading && (
         <div className="alert alert-warning d-flex align-items-center justify-content-between gap-3" role="alert">
-          <span>No pudimos cargar algunas estadísticas.</span>
+          <span>
+            No pudimos cargar algunas estadísticas.
+            <small className="d-block text-muted">{errors.join(' · ')}</small>
+          </span>
           <button type="button" className="btn btn-sm btn-outline-secondary" onClick={reload}>
             Reintentar
           </button>
@@ -27,7 +36,36 @@ export default function HomePage() {
         ))}
       </section>
 
-      {/* Aquí irán las gráficas */}
+      <section className="chart-grid" aria-label="Gráficos estadísticos">
+        <ChartCard
+          title="Actores culturales por categoría"
+          loading={loading}
+          isEmpty={charts.category.length === 0}
+        >
+          <BarsChart data={charts.category} direction="horizontal" />
+        </ChartCard>
+
+        <ChartCard
+          title="Distribución de actores culturales"
+          loading={loading}
+          isEmpty={charts.actorType.length === 0}
+        >
+          {/* Para barras verticales: direction="vertical" */}
+          <BarsChart data={charts.actorType} direction="vertical" />
+        </ChartCard>
+
+        <ChartCard title="Registro de actores por mes" loading={loading} isEmpty={monthlyTotal === 0}>
+          <MonthlyLineChart data={charts.monthly} />
+        </ChartCard>
+
+        <ChartCard
+          title="Actores culturales por municipio"
+          loading={loading}
+          isEmpty={charts.municipality.length === 0}
+        >
+          <MunicipalityPieChart data={charts.municipality} />
+        </ChartCard>
+      </section>
     </>
   );
 }
