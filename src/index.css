@@ -9,3 +9,8 @@
 
 @import './styles/pages/welcome.css';
 @import './styles/pages/login.css';
+@import './styles/pages/home/home.css';
+
+@import './styles/components/sidebar.css';
+@import './styles/components/dashboard-layout.css';
+@import './styles/components/user-badge.css';

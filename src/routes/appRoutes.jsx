@@ -2,13 +2,25 @@ import { Navigate } from 'react-router-dom';
 import { ROUTE_PATHS } from '../constants/routePaths';
 import WelcomePage from '../pages/welcome/WelcomePage';
 import LoginPage from '../pages/auth/LoginPage';
+import HomePage from '../pages/home/HomePage';
+import GuestRoute from './GuestRoute';
+import ProtectedLayout from './ProtectedLayout';
 
-// Lista de rutas de la app. Para agregar una pantalla, se añade una línea aquí.
 const appRoutes = [
-  { path: ROUTE_PATHS.welcome, element: <WelcomePage /> },
-  { path: ROUTE_PATHS.login, element: <LoginPage /> },
-  // Placeholder: reemplazar cuando exista la pantalla de inicio
-  { path: ROUTE_PATHS.home, element: <h1 className="p-4">Inicio</h1> },
+  { path: ROUTE_PATHS.welcome, element: <GuestRoute><WelcomePage /></GuestRoute> },
+  { path: ROUTE_PATHS.login, element: <GuestRoute><LoginPage /></GuestRoute> },
+
+  // Pantallas internas: comparten el sidebar
+  {
+    element: <ProtectedLayout />,
+    children: [
+      { path: ROUTE_PATHS.home, element: <HomePage /> },
+      // Provisionales: reemplazar por las pantallas reales
+      { path: ROUTE_PATHS.inventory, element: <h1 className="home__title">Inventario</h1> },
+      { path: ROUTE_PATHS.actors, element: <h1 className="home__title">Actores</h1> },
+    ],
+  },
+
   { path: '*', element: <Navigate to={ROUTE_PATHS.welcome} replace /> },
 ];
 

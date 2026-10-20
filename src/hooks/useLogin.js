@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { login } from '../services/authService';
+import useAuth from './useAuth';
 import { validateLogin } from '../utils/validators';
 
 export default function useLogin({ onSuccess } = {}) {
+  const { login } = useAuth();
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -20,8 +21,8 @@ export default function useLogin({ onSuccess } = {}) {
     setError('');
     setLoading(true);
     try {
-      const session = await login({ identifier: identifier.trim(), password });
-      onSuccess?.(session);
+      const profile = await login({ identifier, password });
+      onSuccess?.(profile);
     } catch (err) {
       setError(err.message);
     } finally {
