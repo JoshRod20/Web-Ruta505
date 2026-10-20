@@ -14,3 +14,5 @@
 @import './styles/components/sidebar.css';
 @import './styles/components/dashboard-layout.css';
 @import './styles/components/user-badge.css';
+
+@import './styles/components/stat-card.css';

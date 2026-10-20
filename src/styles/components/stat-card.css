@@ -1,0 +1,70 @@
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.75rem 1rem;
+  background: #fff;
+  border-radius: 8px;
+}
+
+.stat-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+}
+
+.stat-card__icon img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  /* Si tus íconos no son blancos, descomenta para forzarlos a blanco: */
+  /* filter: brightness(0) invert(1); */
+}
+
+.stat-card__body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.25;
+}
+
+.stat-card__value {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.stat-card__label {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+/* Barra gris animada mientras cargan los datos */
+.stat-card__skeleton {
+  display: block;
+  width: 44px;
+  height: 1.2rem;
+  border-radius: 6px;
+  background: #e2e2e2;
+  animation: stat-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes stat-pulse {
+  50% { opacity: 0.45; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stat-card__skeleton { animation: none; }
+}
