@@ -1,0 +1,203 @@
+/* ---------- Barra de herramientas ---------- */
+.inventory__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.inventory__search {
+  position: relative;
+  flex: 1 1 260px;
+  max-width: 420px;
+}
+
+.inventory__search-icon {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  width: 20px;
+  height: 20px;
+  transform: translateY(-50%);
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.inventory__search .form-control {
+  height: 44px;
+  padding-left: 3rem;
+  border: 1px solid #e3e3e3;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 0.8rem;
+}
+
+.inventory__search .form-control:focus {
+  border-color: var(--r505-green-dark);
+  box-shadow: 0 0 0 0.2rem rgba(6, 95, 46, 0.2);
+}
+
+.inventory__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.inventory__actions .btn {
+  min-width: 170px;
+  height: 44px;
+}
+
+/* ---------- Tabla ---------- */
+.inventory-table-wrap {
+  overflow-x: auto;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.inventory-table {
+  --table-head: #17693f;
+  width: 100%;
+  min-width: 780px;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+}
+
+.inventory-table thead th {
+  padding: 0.9rem 1rem;
+  background: var(--table-head);
+  border-right: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.inventory-table thead th:last-child { border-right: 0; }
+
+.inventory-table tbody td {
+  padding: 0.8rem 1rem;
+  border-top: 1px solid #ececec;
+  border-right: 1px solid #ececec;
+  vertical-align: middle;
+}
+
+.inventory-table tbody td:last-child { border-right: 0; }
+
+.inventory-table .inventory-table__number {
+  width: 64px;
+  text-align: center;
+}
+
+.inventory-table .inventory-table__actions {
+  width: 96px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.inventory-table .inventory-table__message {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: #8a8a8a;
+}
+
+/* ---------- Estado ---------- */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 96px;
+  padding: 0.25rem 0.75rem;
+  border-radius: 8px;
+  background: var(--r505-green-lime);
+  color: #000;
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  font-weight: 700;
+  transition: background-color 0.35s ease; /* el color se funde al cambiar de estado */
+}
+
+.status-badge--inactivo { background: #d4d4d4; }
+.status-badge--pendiente { background: #f7b955; }
+
+.status-badge__dot {
+  position: relative;
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #000;
+}
+
+/* Activo: pulso suave que sale del punto */
+.status-badge--activo .status-badge__dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #000;
+  animation: badge-ping 2s ease-out infinite;
+}
+
+/* Pendiente: el punto parpadea despacio */
+.status-badge--pendiente .status-badge__dot {
+  animation: badge-blink 1.4s ease-in-out infinite;
+}
+
+/* Cambio de estado: pequeño "pop" */
+.status-badge--changed {
+  animation: badge-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes badge-ping {
+  0% { transform: scale(1); opacity: 0.45; }
+  70%, 100% { transform: scale(2.6); opacity: 0; }
+}
+
+@keyframes badge-blink {
+  50% { opacity: 0.25; }
+}
+
+@keyframes badge-pop {
+  from { transform: scale(0.85); }
+  to { transform: scale(1); }
+}
+
+/* Respeta a quien desactiva las animaciones en su sistema */
+@media (prefers-reduced-motion: reduce) {
+  .status-badge,
+  .status-badge__dot,
+  .status-badge__dot::after {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* ---------- Botones de ícono (editar / eliminar) ---------- */
+.icon-btn {
+  display: inline-flex;
+  padding: 0.35rem;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  line-height: 0;
+}
+
+.icon-btn:hover { background: #eef3ef; }
+
+.icon-btn img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+@media (max-width: 767.98px) {
+  .inventory__search { max-width: none; }
+  .inventory__actions { width: 100%; }
+  .inventory__actions .btn { flex: 1 1 140px; }
+}

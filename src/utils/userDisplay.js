@@ -1,10 +1,11 @@
 import { isMainAdmin, isAdmin } from './permissions';
 
-// Ajusta los campos al nombre que guardes en users/{uid}
-export const getDisplayName = (user) => user?.nombre ?? user?.name ?? user?.email ?? '';
+export const getDisplayName = (user) =>
+  user?.nombreCompleto ?? user?.nombre ?? user?.name ?? user?.email ?? '';
 
+// esAdminPrincipal -> "Administrador" | role "institucion" -> "INTUR"
 export function getRoleLabel(user) {
-  if (isMainAdmin(user)) return 'Administrador principal';
-  if (isAdmin(user)) return 'Administrador';
+  if (isMainAdmin(user)) return 'Administrador';
+  if (isAdmin(user)) return 'INTUR';
   return '';
 }

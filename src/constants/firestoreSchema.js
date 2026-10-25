@@ -4,6 +4,7 @@
 export const COLLECTIONS = {
   users: 'users',
   creativeRoutes: 'rutas_creativas',
+  inventory: 'inventario',
 };
 
 export const USER_ROLES = {

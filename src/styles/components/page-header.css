@@ -1,0 +1,21 @@
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-header__title {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--r505-green-dark);
+  margin-bottom: 0.25rem;
+}
+
+.page-header__subtitle {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Deja libre la esquina donde flota el usuario */
+@media (min-width: 768px) {
+  .page-header { padding-right: 14rem; }
+}

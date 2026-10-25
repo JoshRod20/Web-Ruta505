@@ -17,3 +17,7 @@
 
 @import './styles/components/stat-card.css';
 @import './styles/components/chart-card.css';
+
+@import './styles/components/inventory.css';
+@import './styles/components/page-header.css';
+@import './styles/components/modal.css';

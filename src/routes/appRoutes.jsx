@@ -3,6 +3,7 @@ import { ROUTE_PATHS } from '../constants/routePaths';
 import WelcomePage from '../pages/welcome/WelcomePage';
 import LoginPage from '../pages/auth/LoginPage';
 import HomePage from '../pages/home/HomePage';
+import InventoryPage from '../pages/inventory/InventoryPage';
 import GuestRoute from './GuestRoute';
 import ProtectedLayout from './ProtectedLayout';
 
@@ -15,8 +16,8 @@ const appRoutes = [
     element: <ProtectedLayout />,
     children: [
       { path: ROUTE_PATHS.home, element: <HomePage /> },
-      // Provisionales: reemplazar por las pantallas reales
-      { path: ROUTE_PATHS.inventory, element: <h1 className="home__title">Inventario</h1> },
+      { path: ROUTE_PATHS.inventory, element: <InventoryPage /> },
+      // Provisional: reemplazar por la pantalla real
       { path: ROUTE_PATHS.actors, element: <h1 className="home__title">Actores</h1> },
     ],
   },

@@ -36,7 +36,9 @@
 }
 
 .user-badge__role {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
   color: var(--r505-green-dark);
   white-space: nowrap;
 }
