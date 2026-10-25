@@ -4,5 +4,6 @@ export const ROUTE_PATHS = {
   forgotPassword: '/forgot-password',
   home: '/inicio',
   inventory: '/inventario',
+  profiles: '/perfiles',
   actors: '/actores',
 };

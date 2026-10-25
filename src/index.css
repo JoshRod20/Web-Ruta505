@@ -21,3 +21,6 @@
 @import './styles/components/inventory.css';
 @import './styles/components/page-header.css';
 @import './styles/components/modal.css';
+
+@import './styles/components/search-input.css';  
+@import './styles/pages/profiles.css';            

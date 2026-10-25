@@ -4,8 +4,11 @@ import WelcomePage from '../pages/welcome/WelcomePage';
 import LoginPage from '../pages/auth/LoginPage';
 import HomePage from '../pages/home/HomePage';
 import InventoryPage from '../pages/inventory/InventoryPage';
+import ProfilesPage from '../pages/profiles/ProfilesPage';
+import { canManageProfiles } from '../utils/permissions';
 import GuestRoute from './GuestRoute';
 import ProtectedLayout from './ProtectedLayout';
+import RoleRoute from './RoleRoute';
 
 const appRoutes = [
   { path: ROUTE_PATHS.welcome, element: <GuestRoute><WelcomePage /></GuestRoute> },
@@ -17,6 +20,10 @@ const appRoutes = [
     children: [
       { path: ROUTE_PATHS.home, element: <HomePage /> },
       { path: ROUTE_PATHS.inventory, element: <InventoryPage /> },
+      {
+        path: ROUTE_PATHS.profiles,
+        element: <RoleRoute allowed={canManageProfiles}><ProfilesPage /></RoleRoute>,
+      },
       // Provisional: reemplazar por la pantalla real
       { path: ROUTE_PATHS.actors, element: <h1 className="home__title">Actores</h1> },
     ],

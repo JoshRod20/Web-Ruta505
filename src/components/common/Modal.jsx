@@ -8,7 +8,7 @@ const FOCUSABLE =
  * - busy: mientras se guarda, no se puede cerrar.
  * - role: usa "alertdialog" para confirmaciones destructivas.
  */
-export default function Modal({ title, onClose, children, footer, busy = false, role = 'dialog' }) {
+export default function Modal({ title, onClose, children, footer, busy = false, role = 'dialog', size }) {
   const titleId = useId();
   const dialogRef = useRef(null);
 
@@ -70,7 +70,7 @@ export default function Modal({ title, onClose, children, footer, busy = false, 
           if (e.target === e.currentTarget && !busy) onClose();
         }}
       >
-        <div className="modal-dialog modal-dialog-centered">
+        <div className={`modal-dialog modal-dialog-centered ${size ? `modal-${size}` : ''}`}>
           <div
             ref={dialogRef}
             className="modal-content r505-modal"

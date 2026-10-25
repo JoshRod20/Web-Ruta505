@@ -12,12 +12,15 @@ import logoCompact from '../../assets/images/logo-ruta505-compact-white.png';
  */
 export default function Sidebar({ open = false, onClose }) {
   const navigate = useNavigate();
-  const { logout } = useAuth();
+  // 1) Dentro del componente, junto a `logout`:
+const { user, logout } = useAuth();
+const items = NAV_ITEMS.filter(({ allowed }) => !allowed || allowed(user));
 
   const handleLogout = async () => {
     await logout();
     navigate(ROUTE_PATHS.login, { replace: true });
   };
+  
 
   return (
     <>
@@ -31,7 +34,7 @@ export default function Sidebar({ open = false, onClose }) {
         </div>
 
         <ul className="sidebar__nav">
-          {NAV_ITEMS.map(({ label, path, icon }) => (
+          {items.map(({ label, path, icon }) => (
             <li key={path}>
               <NavLink
                 to={path}

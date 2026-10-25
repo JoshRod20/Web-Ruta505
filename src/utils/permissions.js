@@ -27,3 +27,6 @@ export function can(profile, permission) {
   if (isAdmin(profile)) return ADMIN_PERMISSIONS[permission] === true;
   return false;
 }
+
+// Solo el Administrador (esAdminPrincipal) gestiona los perfiles de los actores.
+export const canManageProfiles = (profile) => isMainAdmin(profile);
