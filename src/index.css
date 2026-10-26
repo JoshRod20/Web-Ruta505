@@ -1,13 +1,28 @@
-@import "tailwindcss";
+/* Punto de entrada de estilos: el orden de los imports importa */
+@import './styles/fonts.css';
+@import './styles/variables.css';
+@import './styles/base.css';
 
-@theme {
-  --color-ruta-forest: #0b6e36;
-  --color-ruta-ink: #123524;
-  --color-ruta-leaf: #8cc63f;
-  --color-ruta-sky: #29abe2;
-  --color-ruta-sun: #f7941d;
-  --color-ruta-cream: #fbf6ec;
+@import './styles/components/button.css';
+@import './styles/components/fields.css';
+@import './styles/components/split-layout.css';
 
-  --font-display: "Baloo 2", sans-serif;
-  --font-body: "Inter", sans-serif;
-}
+@import './styles/pages/welcome.css';
+@import './styles/pages/login.css';
+@import './styles/pages/home/home.css';
+
+@import './styles/components/sidebar.css';
+@import './styles/components/dashboard-layout.css';
+@import './styles/components/user-badge.css';
+
+@import './styles/components/stat-card.css';
+@import './styles/components/chart-card.css';
+
+@import './styles/components/inventory.css';
+@import './styles/components/page-header.css';
+@import './styles/components/modal.css';
+
+@import './styles/components/search-input.css';  
+@import './styles/pages/profiles.css';      
+
+@import './styles/pages/actors.css';

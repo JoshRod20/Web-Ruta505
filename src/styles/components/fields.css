@@ -1,0 +1,33 @@
+.r505-field {
+  position: relative;
+}
+
+.r505-field .form-control {
+  background: var(--r505-field);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 0.85rem 1rem;
+  font-size: 0.78rem;
+}
+
+.r505-field .form-control:focus {
+  background: #fff;
+  border-color: var(--r505-green-dark);
+  box-shadow: 0 0 0 0.2rem rgba(6, 95, 46, 0.2);
+}
+
+.r505-field--icon .form-control {
+  padding-right: 3rem;
+}
+
+.r505-field__toggle {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  transform: translateY(-50%);
+  border: 0;
+  background: none;
+  color: var(--r505-green-dark);
+  padding: 0.25rem;
+  line-height: 0;
+}

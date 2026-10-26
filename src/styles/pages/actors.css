@@ -1,0 +1,134 @@
+.actors__toolbar {
+  margin-bottom: 1.25rem;
+}
+
+.actors__toolbar .search-input {
+  max-width: 420px;
+}
+
+.actors__message {
+  margin: 2.5rem 0;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+/* ---------- Catálogo ---------- */
+.actor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+  gap: 1.25rem;
+}
+
+.actor-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.447);
+}
+
+.actor-card__media {
+  aspect-ratio: 6 / 5;
+  background: #e9ecea;
+}
+
+.actor-card__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.actor-card__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #a9b3ad;
+}
+
+.actor-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0.85rem 1rem 1.1rem; 
+}
+
+.actor-card__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--r505-orange-dark);
+  overflow-wrap: anywhere;
+  /* Máximo dos líneas; el nombre completo sale al pasar el cursor */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.actor-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.actor-card__info li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+}
+
+.actor-card__info svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--r505-green-dark);
+}
+
+.actor-card__info span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Carga ---------- */
+.actor-card--skeleton .actor-card__media,
+.actor-card__bar {
+  animation: stat-pulse 1.2s ease-in-out infinite;
+}
+
+.actor-card__bar {
+  display: block;
+  height: 0.7rem;
+  border-radius: 6px;
+  background: #ececec;
+}
+
+.actor-card__bar--title {
+  width: 70%;
+  height: 0.9rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .actor-card--skeleton .actor-card__media,
+  .actor-card__bar {
+    animation: none;
+  }
+}
+
+.actor-card__icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 1px;
+  object-fit: contain;
+}
