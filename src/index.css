@@ -23,4 +23,6 @@
 @import './styles/components/modal.css';
 
 @import './styles/components/search-input.css';  
-@import './styles/pages/profiles.css';            
+@import './styles/pages/profiles.css';      
+
+@import './styles/pages/actors.css';

@@ -23,6 +23,6 @@
 }
 
 .search-input .form-control:focus {
-  border-color: var(--r505-green-dark);
+  border-color: var(--r505- );
   box-shadow: 0 0 0 0.2rem rgba(6, 95, 46, 0.2);
 }

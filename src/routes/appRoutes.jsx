@@ -5,6 +5,7 @@ import LoginPage from '../pages/auth/LoginPage';
 import HomePage from '../pages/home/HomePage';
 import InventoryPage from '../pages/inventory/InventoryPage';
 import ProfilesPage from '../pages/profiles/ProfilesPage';
+import ActorsPage from '../pages/actors/ActorsPage';
 import { canManageProfiles } from '../utils/permissions';
 import GuestRoute from './GuestRoute';
 import ProtectedLayout from './ProtectedLayout';
@@ -24,8 +25,8 @@ const appRoutes = [
         path: ROUTE_PATHS.profiles,
         element: <RoleRoute allowed={canManageProfiles}><ProfilesPage /></RoleRoute>,
       },
-      // Provisional: reemplazar por la pantalla real
-      { path: ROUTE_PATHS.actors, element: <h1 className="home__title">Actores</h1> },
+      // Administrador e INTUR
+      { path: ROUTE_PATHS.actors, element: <ActorsPage /> },
     ],
   },
 
