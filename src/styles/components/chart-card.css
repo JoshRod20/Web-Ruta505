@@ -1,0 +1,115 @@
+/* ---------- Cuadrícula 2 x 2 como en el diseño ---------- */
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* minmax(0,…) evita que el gráfico desborde */
+  gap: 1rem;
+  align-items: stretch; /* las dos tarjetas de cada fila tienen la misma altura */
+}
+
+.chart-card {
+  container-type: inline-size; /* permite adaptar el contenido al ancho de la tarjeta */
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 1rem 1.25rem 1.25rem;
+  background: #fff;
+  border-radius: 8px;
+}
+
+.chart-card__title {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--r505-green-dark);
+  margin: 0 0 0.75rem;
+}
+
+.chart-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  min-height: 200px;
+}
+
+.chart-card__empty {
+  margin: 0;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #8a8a8a;
+}
+
+/* Barra gris animada mientras cargan los datos */
+.chart-card__skeleton {
+  height: 200px;
+  border-radius: 8px;
+  background: #ececec;
+  animation: stat-pulse 1.2s ease-in-out infinite;
+}
+
+/* ---------- Pastel + leyenda ---------- */
+.pie-chart {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pie-chart__plot {
+  flex: 1 1 55%;
+  min-width: 0;
+}
+
+.pie-chart__legend {
+  flex: 1 1 45%;
+  min-width: 0;
+  max-height: 240px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-y: auto;
+}
+
+.pie-chart__item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  cursor: default;
+  transition: background 0.15s ease;
+}
+
+.pie-chart__item.is-active { background: #f1f5f2; }
+
+.pie-chart__dot {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.pie-chart__name {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Si la tarjeta es angosta, la leyenda pasa debajo del pastel (sin apilar las tarjetas) */
+@container (max-width: 440px) {
+  .pie-chart { flex-direction: column; align-items: stretch; }
+  .pie-chart__plot { flex: none; }
+  .pie-chart__legend { flex: none; max-height: 160px; }
+}
+
+/* ---------- Móvil: recién aquí se apilan las tarjetas ---------- */
+@media (max-width: 767.98px) {
+  .chart-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chart-card__skeleton { animation: none; }
+}

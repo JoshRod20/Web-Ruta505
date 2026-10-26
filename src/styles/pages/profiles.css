@@ -1,0 +1,293 @@
+/* ---------- Controles superiores ---------- */
+.profiles__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.profiles__controls .search-input {
+  flex: 1 1 260px;
+  max-width: 420px;
+}
+
+/* Botones en forma de píldora: "Cuentas activas" y los cuatro tipos */
+.profiles-pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 44px;
+  padding: 0.5rem 1.25rem;
+  border: 0;
+  border-radius: 8px;
+  background: #f4f4f4;
+  color: #000;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.18);  
+}
+
+.profiles-pill:hover { background: #e9ecea; }
+
+.profiles-pill:focus-visible {
+  outline: 2px solid var(--r505-green-dark);
+  outline-offset: 2px;
+}
+
+.profiles-pill.is-selected,
+.profiles-pill.is-selected:hover {
+  background: var(--r505-green-lime);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.18);
+}
+
+/* "Cuentas activas": contorno cuando está cerrado, relleno cuando está abierto */
+.profiles-pill--accounts {
+  border: 1.5px solid var(--r505-green-dark);
+  background: #fff;
+  color: var(--r505-green-dark);
+  font-weight: 600;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.18);
+}
+
+.profiles-pill--accounts:hover { background: #eef3ef; }
+
+.profiles-pill--accounts.is-open,
+.profiles-pill--accounts.is-open:hover {
+  background: var(--r505-green-dark);
+  color: #fff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.18);
+}
+
+/* "Rechazados": contorno naranja cuando está cerrado, relleno naranja cuando está abierto */
+.profiles-pill--rejected {
+  border: 1.5px solid var(--r505-orange);
+  background: #fff;
+  color: #000;
+  font-weight: 600;
+}
+
+.profiles-pill--rejected:hover { background: #fff4ec; }
+
+.profiles-pill--rejected.is-open,
+.profiles-pill--rejected.is-open:hover {
+  background: var(--r505-orange);
+  color: #000;
+}
+
+/* ---------- Tipos de actor ---------- */
+.profile-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  max-width: 820px;
+  margin-bottom: 1.5rem;
+}
+
+.profile-tabs .profiles-pill { padding-inline: 2.5rem; } /* deja sitio al círculo naranja */
+
+.profile-tabs__badge {
+  position: absolute;
+  top: 50%;
+  right: 0.9rem;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 0.35rem;
+  border-radius: 999px;
+  background: var(--r505-orange);
+  color: #000;
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.profiles__count {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  color: #000000;
+}
+
+.profiles__message {
+  margin: 2.5rem 0;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+/* ---------- Tarjetas ---------- */
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 300px));
+  gap: 1.25rem;
+}
+
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 1.5rem 1.5rem 1.25rem;
+  border-radius: 12px;
+  background: #fffefe;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.571);
+  transition: box-shadow 0.2s ease;
+}
+
+.profile-card__fields { margin: 0; }
+.profile-card__field { margin-bottom: 1rem; }
+
+.profile-card__field dt {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.profile-card__field dd {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  margin: 0.25rem 0 0;
+  font-size: 0.75rem;
+  overflow-wrap: anywhere;
+}
+
+.profile-card__field dd svg {
+  flex-shrink: 0;
+  color: var(--r505-green-lime);
+}
+
+.is-uppercase { text-transform: uppercase; }
+
+/* Azul de la marca, un poco más oscuro para que se lea bien sobre blanco */
+.profile-card__more {
+  align-self: flex-end;
+  padding: 0.25rem 0;
+  border: 0;
+  background: none;
+  color: #0877b3;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.profile-card__more:hover { text-decoration: underline; }
+
+.profile-card__actions {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.profile-card__actions .btn {
+  min-width: 96px;
+  padding: 0.5rem 1rem;
+  font-size: 0.72rem;
+}
+
+/* ---------- Modal ampliado ---------- */
+.profile-modal__header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.profile-modal__avatar {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  background: var(--r505-green-dark);
+  color: #fff;
+}
+
+.profile-modal__identity { min-width: 0; }
+
+.profile-modal__name {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--r505-green-dark);
+  overflow-wrap: anywhere;
+}
+
+.profile-modal__type {
+  margin: 0.25rem 0 0.75rem;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.profile-modal__status {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  background: var(--r505-green-lime);
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+.profile-modal__section {
+  margin: 1.25rem 0 0.75rem;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.profile-modal__data {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr 1.2fr;
+  gap: 1rem;
+  margin: 0 0 1.25rem;
+}
+
+.profile-modal__data dt,
+.profile-modal__description dt {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--r505-green-dark);
+}
+
+.profile-modal__data dd,
+.profile-modal__description dd {
+  margin: 0.25rem 0 0;
+  font-size: 0.72rem;
+  overflow-wrap: anywhere;
+}
+
+.profile-modal__description { margin: 0; }
+.profile-modal__description dd { white-space: pre-line; } /* respeta los saltos de línea */
+
+.profile-modal__footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+/* ---------- Móvil ---------- */
+@media (max-width: 767.98px) {
+  .profile-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .profile-modal__header { flex-direction: column; align-items: flex-start; }
+  .profile-modal__avatar { width: 80px; height: 80px; }
+  .profile-modal__avatar svg { width: 44px; height: 44px; }
+  .profile-modal__name { font-size: 1.4rem; }
+  .profile-modal__data { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .profiles-pill { transition: none; }
+}

@@ -1,23 +1,11 @@
-// Convención: usar guion solo cuando el valor combina más de una palabra
-// (ej. "actor-cultural"). Un valor de una sola palabra no lleva guion
-// (ej. "turista", "institucion"). No renombrar estos valores sin también
-// actualizar firestore.rules (los usa como strings literales) y sin migrar
-// los documentos ya existentes en la colección "users".
+// La web es solo para administradores.
+// `esAdminPrincipal` no es un rol: es un campo aparte del perfil (ver utils/permissions.js).
 export const ROLES = {
-  TURISTA: "turista",
-  ACTOR_CULTURAL: "actor-cultural",
-  INSTITUCION: "institucion",
+  admin: 'institucion',
 };
 
-export const ACTOR_TYPES = {
-  COMUNIDAD: "comunidad",
-  ARTESANO: "artesano",
-  GUIA: "guia",
-  EMPRENDEDOR: "emprendedor",
-};
-
-export const ESTADOS_VERIFICACION = {
-  PENDIENTE: "pendiente",
-  APROBADO: "aprobado",
-  RECHAZADO: "rechazado",
+// Tipos de cuenta de la app móvil. Se usan solo para las estadísticas.
+export const ACCOUNT_TYPES = {
+  tourist: 'turista',
+  culturalActor: 'actor-cultural',
 };

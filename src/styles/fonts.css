@@ -1,33 +1,31 @@
-/* src/styles/fonts.css */
-
 @font-face {
-  font-family: "Poppins-Bold";
-  src: url("../utils/fonts/Poppins-Bold.ttf") format("truetype");
-  font-weight: normal;
+  font-family: 'Inter';
+  src: url('../../src/utils/fonts/Inter_18pt-Regular.ttf') format('truetype');
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Poppins-SemiBold";
-  src: url("../utils/fonts/Poppins-SemiBold.ttf") format("truetype");
-  font-weight: normal;
+  font-family: 'Inter';
+  src: url('../../src/utils/fonts/Inter_18pt-SemiBold.ttf') format('truetype');
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Inter-Regular";
-  src: url("../utils/fonts/Inter_18pt-Regular.ttf") format("truetype");
-  font-weight: normal;
+  font-family: 'Poppins';
+  src: url('../../src/utils/fonts/Poppins-SemiBold.ttf') format('truetype');
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Inter-SemiBold";
-  src: url("../utils/fonts/Inter_18pt-SemiBold.ttf") format("truetype");
-  font-weight: normal;
+  font-family: 'Poppins';
+  src: url('../../src/utils/fonts/Poppins-Bold.ttf') format('truetype');
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }

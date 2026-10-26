@@ -1,0 +1,45 @@
+.r505-modal {
+  border: 0;
+  border-radius: 12px;
+}
+
+.r505-modal .modal-title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--r505-green-dark);
+}
+
+.r505-modal .modal-header,
+.r505-modal .modal-footer {
+  border-color: #ececec;
+}
+
+.r505-modal .form-label {
+  margin-bottom: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* Selector con el mismo estilo que los inputs */
+.r505-field .form-select {
+  background-color: var(--r505-field);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 0.85rem 2.25rem 0.85rem 1rem;
+  font-size: 0.78rem;
+}
+
+.r505-field .form-select:focus {
+  border-color: var(--r505-green-dark);
+  box-shadow: 0 0 0 0.2rem rgba(6, 95, 46, 0.2);
+}
+
+/* Lista de filas omitidas al importar */
+.import-errors {
+  max-height: 180px;
+  margin: 0;
+  padding-left: 1.25rem;
+  overflow-y: auto;
+  font-size: 0.78rem;
+}

@@ -1,0 +1,75 @@
+.dashboard {
+  position: relative;
+  min-height: 100%;
+  background: #f4f4f4;
+}
+
+/* El contenido siempre reserva solo el ancho del sidebar colapsado:
+   al expandirse, el menú pasa por encima y nada se mueve. */
+.dashboard__content {
+  min-height: 100vh;
+  padding: 2rem 2rem 2rem calc(var(--sidebar-collapsed) + 2rem);
+}
+
+/* Escritorio: el usuario flota en la esquina superior derecha */
+.dashboard__topbar {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  z-index: 10;
+}
+
+.dashboard__menu-btn,
+.dashboard__mobile-logo {
+  display: none;
+}
+
+@media (max-width: 767.98px) {
+  .dashboard__topbar {
+    position: sticky;
+    top: 0;
+    right: auto;
+    z-index: 1020;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 1rem;
+    background: var(--r505-green-dark);
+  }
+
+  .dashboard__menu-btn {
+    display: block;
+    border: 0;
+    background: none;
+    color: #fff;
+    line-height: 0;
+    padding: 0.25rem;
+  }
+
+  .dashboard__mobile-logo {
+    display: block;
+    height: 28px;
+    width: auto;
+  }
+
+  /* El usuario va a la derecha de la barra, en blanco */
+  .dashboard__topbar .user-badge {
+    margin-left: auto;
+    max-width: 55%;
+    color: #fff;
+  }
+
+  .dashboard__topbar .user-badge__avatar {
+    background: #fff;
+    color: var(--r505-green-dark);
+  }
+
+  .dashboard__topbar .user-badge__role {
+    color: var(--r505-green-lime);
+  }
+
+  .dashboard__content {
+    min-height: auto;
+    padding: 1.25rem 1rem;
+  }
+}

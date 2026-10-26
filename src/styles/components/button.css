@@ -1,0 +1,61 @@
+/* Botón primario verde oscuro, extiende .btn de Bootstrap */
+.btn-r505 {
+  --bs-btn-bg: var(--r505-green-dark);
+  --bs-btn-border-color: var(--r505-green-dark);
+  --bs-btn-color: #fff;
+  --bs-btn-hover-bg: #04481f;
+  --bs-btn-hover-border-color: #04481f;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-active-bg: #033a19;
+  --bs-btn-active-border-color: #033a19;
+  --bs-btn-disabled-bg: var(--r505-green-dark);
+  --bs-btn-disabled-border-color: var(--r505-green-dark);
+  --bs-btn-focus-shadow-rgb: 6, 95, 46;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+}
+
+/* Base común de los botones de la marca */
+.btn-r505,
+.btn-r505-orange {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+}
+
+/* Primario: verde oscuro */
+.btn-r505 {
+  --bs-btn-bg: var(--r505-green-dark);
+  --bs-btn-border-color: var(--r505-green-dark);
+  --bs-btn-color: #fff;
+  --bs-btn-hover-bg: #04481f;
+  --bs-btn-hover-border-color: #04481f;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-active-bg: #033a19;
+  --bs-btn-active-border-color: #033a19;
+  --bs-btn-disabled-bg: var(--r505-green-dark);
+  --bs-btn-disabled-border-color: var(--r505-green-dark);
+  --bs-btn-focus-shadow-rgb: 6, 95, 46;
+}
+
+/* Naranja (rechazar). Texto oscuro: el blanco no tiene contraste suficiente sobre este naranja. */
+.btn-r505-orange {
+  --bs-btn-bg: var(--r505-orange);
+  --bs-btn-border-color: var(--r505-orange);
+  --bs-btn-color: #1a1a1a;
+  --bs-btn-hover-bg: #e0840f;
+  --bs-btn-hover-border-color: #e0840f;
+  --bs-btn-hover-color: #000;
+  --bs-btn-active-bg: #c9760c;
+  --bs-btn-active-border-color: #c9760c;
+  --bs-btn-active-color: #000;
+  --bs-btn-disabled-bg: var(--r505-orange);
+  --bs-btn-disabled-border-color: var(--r505-orange);
+  --bs-btn-disabled-color: #1a1a1a;
+  --bs-btn-focus-shadow-rgb: 247, 148, 29;
+}

@@ -1,0 +1,28 @@
+.search-input {
+  position: relative;
+}
+
+.search-input__icon {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  width: 20px;
+  height: 20px;
+  transform: translateY(-50%);
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.search-input .form-control {
+  height: 44px;
+  padding-left: 3rem;
+  border: 1px solid #e3e3e3;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 0.8rem;
+}
+
+.search-input .form-control:focus {
+  border-color: var(--r505- );
+  box-shadow: 0 0 0 0.2rem rgba(6, 95, 46, 0.2);
+}

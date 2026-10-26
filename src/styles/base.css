@@ -1,0 +1,15 @@
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  --bs-body-font-family: var(--font-body);
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--r505-text);
+  background: #fff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}

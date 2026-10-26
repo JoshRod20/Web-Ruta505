@@ -1,0 +1,36 @@
+import { Navigate } from 'react-router-dom';
+import { ROUTE_PATHS } from '../constants/routePaths';
+import WelcomePage from '../pages/welcome/WelcomePage';
+import LoginPage from '../pages/auth/LoginPage';
+import HomePage from '../pages/home/HomePage';
+import InventoryPage from '../pages/inventory/InventoryPage';
+import ProfilesPage from '../pages/profiles/ProfilesPage';
+import ActorsPage from '../pages/actors/ActorsPage';
+import { canManageProfiles } from '../utils/permissions';
+import GuestRoute from './GuestRoute';
+import ProtectedLayout from './ProtectedLayout';
+import RoleRoute from './RoleRoute';
+
+const appRoutes = [
+  { path: ROUTE_PATHS.welcome, element: <GuestRoute><WelcomePage /></GuestRoute> },
+  { path: ROUTE_PATHS.login, element: <GuestRoute><LoginPage /></GuestRoute> },
+
+  // Pantallas internas: comparten el sidebar
+  {
+    element: <ProtectedLayout />,
+    children: [
+      { path: ROUTE_PATHS.home, element: <HomePage /> },
+      { path: ROUTE_PATHS.inventory, element: <InventoryPage /> },
+      {
+        path: ROUTE_PATHS.profiles,
+        element: <RoleRoute allowed={canManageProfiles}><ProfilesPage /></RoleRoute>,
+      },
+      // Administrador e INTUR
+      { path: ROUTE_PATHS.actors, element: <ActorsPage /> },
+    ],
+  },
+
+  { path: '*', element: <Navigate to={ROUTE_PATHS.welcome} replace /> },
+];
+
+export default appRoutes;
