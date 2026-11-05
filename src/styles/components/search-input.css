@@ -1,5 +1,6 @@
 .search-input {
   position: relative;
+  width: 100%;
 }
 
 .search-input__icon {
@@ -23,6 +24,13 @@
 }
 
 .search-input .form-control:focus {
-  border-color: var(--r505- );
+  border-color: var(--r505-green-dark);
   box-shadow: 0 0 0 0.2rem rgba(6, 95, 46, 0.2);
+}
+
+/* Móvil y táctil: 16px evita el zoom automático de iOS al enfocar el campo */
+@media (max-width: 767.98px), (pointer: coarse) {
+  .search-input .form-control {
+    font-size: 1rem;
+  }
 }

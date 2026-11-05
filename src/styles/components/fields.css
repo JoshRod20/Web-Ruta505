@@ -31,3 +31,22 @@
   padding: 0.25rem;
   line-height: 0;
 }
+
+/* Móvil y táctil: 16px evita el zoom automático de iOS al enfocar el campo */
+@media (max-width: 767.98px), (pointer: coarse) {
+  .r505-field .form-control {
+    font-size: 1rem;
+  }
+}
+
+/* Táctil: el ojo de la contraseña con área de toque cómoda */
+@media (pointer: coarse) {
+  .r505-field--icon .form-control {
+    padding-right: 3.5rem;
+  }
+
+  .r505-field__toggle {
+    right: 0.4rem;
+    padding: 0.6rem;
+  }
+}

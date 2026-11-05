@@ -29,6 +29,7 @@
 .login__form {
   width: 100%;
   max-width: 350px;
+  margin-inline: auto;
 }
 
 .login__title {
@@ -71,9 +72,29 @@
   margin: 1rem 0 0;
 }
 
+/* ---------- Móvil ---------- */
+@media (max-width: 767.98px) {
+  .login__title { font-size: 1.7rem; }
+  .login__subtitle { font-size: 1rem; margin-bottom: 1.5rem; }
+
+  .login__back {
+    top: 1rem;
+    left: 1rem;
+    padding: 0.5rem; /* área de toque de 40px */
+  }
+
+  .login__forgot { font-size: 0.78rem; }
+}
+
 /* En pantallas pequeñas se permite el salto de línea para que no se desborde */
 @media (max-width: 575.98px) {
   .login__subtitle {
     white-space: normal;
   }
+}
+
+/* Móvil en horizontal: menos aire para que el formulario no se corte */
+@media (max-height: 520px) {
+  .login__subtitle { margin-bottom: 1rem; }
+  .login__back { top: 0.5rem; left: 0.5rem; }
 }

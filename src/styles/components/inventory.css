@@ -201,3 +201,29 @@
   .inventory__actions { width: 100%; }
   .inventory__actions .btn { flex: 1 1 140px; }
 }
+
+/* ---------- Responsive ---------- */
+.inventory-table-wrap {
+  overscroll-behavior-x: contain; /* el scroll de la tabla no arrastra la página */
+}
+
+/* Móvil: celdas más compactas */
+@media (max-width: 575.98px) {
+  .inventory-table thead th,
+  .inventory-table tbody td {
+    padding: 0.7rem 0.75rem;
+  }
+}
+
+/* Pantallas táctiles: botones de editar y eliminar con área de toque cómoda,
+   y sin el hover que se queda pegado después de tocar */
+@media (pointer: coarse) {
+  .icon-btn { padding: 0.5rem; }
+  .icon-btn:hover { background: none; }
+  .icon-btn:active { background: #eef3ef; }
+
+  .inventory-table .inventory-table__actions {
+    width: 112px;
+    padding-inline: 0.5rem;
+  }
+}

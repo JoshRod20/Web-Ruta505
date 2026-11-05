@@ -1,6 +1,6 @@
 :root {
   --sidebar-collapsed: 72px;
-  --sidebar-expanded: 230px;
+  --sidebar-expanded: 250px;
 }
 
 /* ---------- Sidebar (escritorio: colapsado -> se expande con hover) ---------- */
@@ -24,6 +24,7 @@
 /* Logo: el compacto se cambia por el completo al expandirse */
 .sidebar__brand {
   position: relative;
+  flex-shrink: 0;
   height: 56px;
   margin-bottom: 1.25rem;
   border-bottom: 1px solid rgba(141, 194, 31, 0.6);
@@ -43,7 +44,7 @@
 
 .sidebar__close { display: none; }
 
-/* Items */
+/* Items. Con poca altura de pantalla, la lista hace scroll en lugar de cortarse. */
 .sidebar__nav {
   list-style: none;
   margin: 0;
@@ -51,6 +52,11 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain; /* el scroll de la lista no arrastra la página */
+  scrollbar-width: thin;
 }
 
 .sidebar__item {
@@ -70,6 +76,7 @@
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
   transition: background 0.2s ease;
 }
 
@@ -83,7 +90,9 @@
 }
 
 .sidebar__item:hover { background: rgba(255, 255, 255, 0.12); color: #fff; }
-.sidebar__item:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+/* El borde de foco va hacia adentro para que el scroll del menú no lo recorte */
+.sidebar__item:focus-visible { outline: 2px solid #fff; outline-offset: -2px; }
 
 .sidebar__item.active,
 .sidebar__item.active:hover {
@@ -96,6 +105,7 @@
 }
 
 .sidebar__footer {
+  flex-shrink: 0;
   margin-top: auto;
   padding-top: 1rem;
   border-top: 1px solid rgba(141, 194, 31, 0.6);
@@ -109,10 +119,18 @@
   background: rgba(0, 0, 0, 0.35);
   opacity: 0;
   pointer-events: none;
+  touch-action: none; /* arrastrar sobre el fondo no mueve la página */
   transition: opacity 0.25s ease;
 }
 
-@media (min-width: 768px) {
+/* Bloqueo del scroll de la página mientras el drawer está abierto */
+html.drawer-open,
+body.drawer-open {
+  overflow: hidden;
+}
+
+/* ---------- Escritorio con cursor: se expande al pasar el mouse ---------- */
+@media (min-width: 768px) and (hover: hover) {
   /* Expandido con el cursor */
   .sidebar:hover { width: var(--sidebar-expanded); }
   .sidebar:hover .sidebar__label { opacity: 1; }
@@ -129,15 +147,23 @@
   .sidebar:has(:focus-visible) + .sidebar__backdrop { opacity: 1; }
 }
 
-/* ---------- Móvil: drawer lateral ---------- */
-@media (max-width: 767.98px) {
+/* ---------- Móvil y tablets táctiles (sin hover): drawer lateral ---------- */
+@media (max-width: 767.98px), (hover: none) {
   .sidebar {
     top: 0;
-    bottom: 0;
+    bottom: auto;
+    height: 100vh;   /* respaldo */
+    height: 100dvh;  /* alto real visible */
     width: 260px;
+    max-width: 85vw;
+    /* Respeta el notch y la barra de gestos del teléfono */
+    padding-top: max(1rem, env(safe-area-inset-top));
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    padding-left: max(0.75rem, env(safe-area-inset-left));
     transform: translateX(-100%);
     visibility: hidden; /* fuera de pantalla no recibe foco */
     box-shadow: none;
+    overscroll-behavior: contain;
     transition: transform 0.25s ease, visibility 0s linear 0.25s;
   }
 
@@ -153,17 +179,26 @@
   .sidebar__logo--full { opacity: 1; left: 40%; }
 
   .sidebar__close {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
     top: 50%;
     right: 0;
     transform: translateY(-50%);
+    min-width: 44px;
+    min-height: 44px;
     border: 0;
+    border-radius: 8px;
     background: none;
     color: #fff;
     line-height: 0;
-    padding: 0.25rem;
+    padding: 0.5rem;
+    -webkit-tap-highlight-color: transparent;
   }
+
+  .sidebar__close:focus-visible { outline: 2px solid #fff; outline-offset: -2px; }
+  .sidebar__close:active { background: rgba(255, 255, 255, 0.12); }
 
   .sidebar--open + .sidebar__backdrop {
     opacity: 1;
@@ -171,11 +206,35 @@
   }
 }
 
+/* ---------- Táctil: sin el hover que se queda pegado después de tocar ---------- */
+@media (hover: none) {
+  .sidebar__item:hover { background: none; }
+  .sidebar__item:not(.active):active { background: rgba(255, 255, 255, 0.18); }
+}
+
+/* Dedo: items con área de toque más cómoda */
+@media (pointer: coarse) {
+  .sidebar__item { height: 48px; }
+}
+
+/* ---------- Pantallas bajas (móvil en horizontal): versión compacta ---------- */
+@media (max-height: 520px) {
+  .sidebar {
+    padding-top: max(0.5rem, env(safe-area-inset-top));
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+  }
+  .sidebar__brand { height: 44px; margin-bottom: 0.5rem; }
+  .sidebar__nav { gap: 0.25rem; }
+  .sidebar__item { height: 40px; }
+  .sidebar__footer { padding-top: 0.5rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .sidebar,
   .sidebar__label,
   .sidebar__logo,
-  .sidebar__backdrop {
+  .sidebar__backdrop,
+  .sidebar__item {
     transition: none;
   }
 }

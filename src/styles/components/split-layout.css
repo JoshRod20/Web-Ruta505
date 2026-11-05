@@ -1,30 +1,3 @@
-/* Nubes: la posición y el tamaño se definen en constants/sceneClouds.js */
-.split__scene > .split__clouds {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.split__cloud {
-  position: absolute;
-  height: auto;
-  user-select: none;
-}
-
-/* Parcialmente fuera del panel, como en el diseño */
-.split__cloud--left {
-  top: 17%;
-  left: -12%;
-  width: 45%;
-}
-
-.split__cloud--right {
-  top: 25%;
-  right: -14%;
-  width: 50%;
-}
-
 .split__scene {
   position: relative;
   overflow: hidden;
@@ -40,9 +13,25 @@
   background: var(--r505-grass);
 }
 
+/* Contenido del panel (mascota, logo) por encima del césped */
 .split__scene > * {
   position: relative;
   z-index: 1;
+}
+
+/* Nubes: la posición y el tamaño de cada una se definen en constants/sceneClouds.js.
+   El selector doble gana a `.split__scene > *` sin importar el orden. */
+.split__scene > .split__clouds {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.split__cloud {
+  position: absolute;
+  height: auto;
+  user-select: none;
 }
 
 .split__content {
@@ -51,6 +40,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  min-width: 0;
   padding: 2rem 1.5rem;
   background: linear-gradient(180deg, #fff 65%, #cfe4ea 100%);
+}
+
+@media (max-width: 575.98px) {
+  .split__content {
+    padding: 1.5rem 1.25rem;
+  }
 }

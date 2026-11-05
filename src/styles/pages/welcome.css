@@ -66,3 +66,22 @@
   width: 100%;
   max-width: 260px;
 }
+
+/* ---------- Móvil ---------- */
+@media (max-width: 767.98px) {
+  .welcome__body {
+    max-width: min(100%, 320px);
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .welcome__logo { max-width: 160px; margin-inline: auto; }
+  .welcome__tagline { font-size: 1.2rem; margin-bottom: 2rem; }
+  .welcome__body .btn { width: 100%; }
+}
+
+/* Móvil en horizontal: logo y texto más compactos */
+@media (max-height: 520px) {
+  .welcome__logo { max-width: 110px; margin-bottom: 1rem; }
+  .welcome__tagline { margin-bottom: 1.25rem; }
+}

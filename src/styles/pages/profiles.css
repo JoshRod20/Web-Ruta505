@@ -28,7 +28,7 @@
   font-family: var(--font-body);
   font-size: 0.85rem;
   transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.18);  
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.18);
 }
 
 .profiles-pill:hover { background: #e9ecea; }
@@ -277,15 +277,56 @@
   width: 100%;
 }
 
+/* ---------- Tablets: las 4 pestañas no caben con tanto relleno ---------- */
+@media (max-width: 991.98px) {
+  .profile-tabs .profiles-pill { padding-inline: 1.75rem; }
+  .profile-tabs__badge { right: 0.6rem; }
+}
+
 /* ---------- Móvil ---------- */
 @media (max-width: 767.98px) {
-  .profile-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* Buscador a todo el ancho; los botones se reparten la fila */
+  .profiles__controls .search-input {
+    flex: 1 1 100%;
+    max-width: none;
+  }
+
+  .profiles__controls .profiles-pill { flex: 1 1 auto; }
+
+  .profile-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    max-width: none;
+  }
+
+  .profile-tabs .profiles-pill {
+    padding-inline: 0.75rem 1.9rem; /* más sitio al texto, el círculo queda a la derecha */
+    font-size: 0.8rem;
+  }
+
+  .profile-card__more { padding: 0.5rem 0; } /* área de toque más cómoda */
 
   .profile-modal__header { flex-direction: column; align-items: flex-start; }
   .profile-modal__avatar { width: 80px; height: 80px; }
   .profile-modal__avatar svg { width: 44px; height: 44px; }
   .profile-modal__name { font-size: 1.4rem; }
   .profile-modal__data { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  /* Botones del modal apilados */
+  .profile-modal__footer { flex-direction: column-reverse; }
+  .profile-modal__footer .btn { width: 100%; }
+}
+
+@media (max-width: 575.98px) {
+  /* La tarjeta ocupa todo el ancho en vez de quedarse en 280-300px */
+  .profile-grid { grid-template-columns: minmax(0, 1fr); }
+
+  .profile-card { padding: 1.25rem 1.1rem 1rem; }
+  .profile-card__actions .btn { flex: 1 1 0; min-width: 0; }
+}
+
+@media (max-width: 399.98px) {
+  .profile-modal__data { grid-template-columns: minmax(0, 1fr); }
 }
 
 @media (prefers-reduced-motion: reduce) {

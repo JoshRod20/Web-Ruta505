@@ -15,6 +15,11 @@
   border-color: #ececec;
 }
 
+/* Nombres largos no desbordan el modal */
+.r505-modal .modal-body {
+  overflow-wrap: anywhere;
+}
+
 .r505-modal .form-label {
   margin-bottom: 0.35rem;
   font-size: 0.8rem;
@@ -42,4 +47,27 @@
   padding-left: 1.25rem;
   overflow-y: auto;
   font-size: 0.78rem;
+}
+
+/* Móvil y táctil: 16px evita el zoom automático de iOS (debe ir después de la regla base) */
+@media (max-width: 767.98px), (pointer: coarse) {
+  .r505-field .form-select {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .r505-modal .modal-title {
+    font-size: 1rem;
+  }
+
+  /* Los botones del pie se reparten el ancho */
+  .r505-modal .modal-footer > .btn {
+    flex: 1 1 auto;
+  }
+
+  /* Deja espacio al teclado en pantallas bajas */
+  .import-errors {
+    max-height: 30vh;
+  }
 }

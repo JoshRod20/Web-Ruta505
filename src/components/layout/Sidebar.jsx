@@ -5,6 +5,7 @@ import { NAV_ITEMS, LOGOUT_ICON } from '../../constants/navItems';
 import { CloseIcon } from '../icons/NavIcons';
 import logoFull from '../../assets/images/logo-ruta505-white.png';
 import logoCompact from '../../assets/images/logo-ruta505-compact-white.png';
+import { useEffect } from 'react';
 
 /**
  * Escritorio: colapsado (íconos), se expande al pasar el cursor.
@@ -21,6 +22,15 @@ const items = NAV_ITEMS.filter(({ allowed }) => !allowed || allowed(user));
     navigate(ROUTE_PATHS.login, { replace: true });
   };
   
+  useEffect(() => {
+  if (!open) return undefined;
+  document.documentElement.classList.add('drawer-open');
+  document.body.classList.add('drawer-open');
+  return () => {
+    document.documentElement.classList.remove('drawer-open');
+    document.body.classList.remove('drawer-open');
+  };
+}, [open]);
 
   return (
     <>

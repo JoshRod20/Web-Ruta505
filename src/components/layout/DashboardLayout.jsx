@@ -1,8 +1,11 @@
-import { useCallback, useEffect, useState } from 'react';
-import Sidebar from './Sidebar';
-import UserBadge from './UserBadge';
-import { MenuIcon } from '../icons/NavIcons';
-import logoFull from '../../assets/images/logo-ruta505-white.png';
+import { useCallback, useEffect, useState } from "react";
+import Sidebar from "./Sidebar";
+import UserBadge from "./UserBadge";
+import { MenuIcon } from "../icons/NavIcons";
+import logoFull from "../../assets/images/logo-ruta505-white.png";
+
+import { Link } from "react-router-dom";
+import { ROUTE_PATHS } from "../../constants/routePaths";
 
 export default function DashboardLayout({ children }) {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -12,13 +15,29 @@ export default function DashboardLayout({ children }) {
   useEffect(() => {
     if (!mobileOpen) return undefined;
 
-    const onKeyDown = (e) => e.key === 'Escape' && closeMenu();
-    document.addEventListener('keydown', onKeyDown);
-    document.body.style.overflow = 'hidden';
+    const onKeyDown = (e) => e.key === "Escape" && closeMenu();
+    document.addEventListener("keydown", onKeyDown);
+    document.body.style.overflow = "hidden";
 
     return () => {
-      document.removeEventListener('keydown', onKeyDown);
-      document.body.style.overflow = '';
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen, closeMenu]);
+
+  // DashboardLayout.jsx
+  useEffect(() => {
+    if (!mobileOpen) return undefined;
+
+    const onKeyDown = (e) => e.key === "Escape" && closeMenu();
+    document.addEventListener("keydown", onKeyDown);
+    document.documentElement.classList.add("drawer-open");
+    document.body.classList.add("drawer-open");
+
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.documentElement.classList.remove("drawer-open");
+      document.body.classList.remove("drawer-open");
     };
   }, [mobileOpen, closeMenu]);
 
@@ -36,7 +55,17 @@ export default function DashboardLayout({ children }) {
         >
           <MenuIcon />
         </button>
-        <img src={logoFull} alt="Ruta 505" className="dashboard__mobile-logo" />
+        <Link
+  to={ROUTE_PATHS.home}
+  className="dashboard__home-link"
+  aria-label="Ir al inicio"
+>
+  <img
+    src={logoFull}
+    alt="Ruta 505"
+    className="dashboard__mobile-logo"
+  />
+</Link>
         <UserBadge />
       </header>
 

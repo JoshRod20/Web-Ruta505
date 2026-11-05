@@ -1,21 +1,27 @@
 .page-header {
   margin-bottom: 2rem;
+  /* Deja libre la esquina donde flota el usuario (solo escritorio) */
+  padding-right: 14rem;
 }
 
 .page-header__title {
+  margin-bottom: 0.25rem;
   font-family: var(--font-heading);
-  font-size: 1.6rem;
+  font-size: clamp(1.25rem, 0.9rem + 1.3vw, 1.6rem); /* crece con la pantalla, de 20px a 25.6px */
   font-weight: 700;
   color: var(--r505-green-dark);
-  margin-bottom: 0.25rem;
+  overflow-wrap: break-word;
 }
 
 .page-header__subtitle {
-  font-size: 0.9rem;
   margin: 0;
+  font-size: clamp(0.8rem, 0.75rem + 0.3vw, 0.9rem);
 }
 
-/* Deja libre la esquina donde flota el usuario */
-@media (min-width: 768px) {
-  .page-header { padding-right: 14rem; }
+/* Móvil y tablet táctil: el usuario va en la barra superior, no flotando */
+@media (max-width: 767.98px), (hover: none) {
+  .page-header {
+    margin-bottom: 1.25rem;
+    padding-right: 0;
+  }
 }

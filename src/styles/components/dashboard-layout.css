@@ -2,21 +2,52 @@
   position: relative;
   min-height: 100%;
   background: #f4f4f4;
+  overflow-x: clip; /* nada dentro del dashboard ensancha la página */
+}
+
+.dashboard__home-link {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 1;
+  min-width: 0;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dashboard__home-link:focus-visible {
+  outline: 2px solid #8cc63f;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.dashboard__mobile-logo {
+  display: block;
+  flex-shrink: 1;
+  min-width: 0;
+  height: 28px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
 }
 
 /* El contenido siempre reserva solo el ancho del sidebar colapsado:
    al expandirse, el menú pasa por encima y nada se mueve. */
 .dashboard__content {
+  min-width: 0;
+  max-width: 100%;
   min-height: 100vh;
   padding: 2rem 2rem 2rem calc(var(--sidebar-collapsed) + 2rem);
 }
 
-/* Escritorio: el usuario flota en la esquina superior derecha */
+/* Escritorio: el usuario flota en la esquina superior derecha.
+   El ancho máximo evita que un nombre largo invada el título (se corta con "…"). */
 .dashboard__topbar {
   position: absolute;
   top: 2rem;
   right: 2rem;
   z-index: 10;
+  max-width: 12.5rem;
 }
 
 .dashboard__menu-btn,
@@ -24,7 +55,8 @@
   display: none;
 }
 
-@media (max-width: 767.98px) {
+/* ---------- Móvil y tablets táctiles: el sidebar pasa a ser un header ---------- */
+@media (max-width: 767.98px), (hover: none) {
   .dashboard__topbar {
     position: sticky;
     top: 0;
@@ -33,31 +65,55 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    padding: 0.6rem 1rem;
+    min-width: 0;
+    max-width: none;
+    min-height: 56px;
+    /* Respeta el notch y los bordes redondeados del teléfono */
+    padding: 0.6rem max(1rem, env(safe-area-inset-right)) 0.6rem max(1rem, env(safe-area-inset-left));
+    padding-top: calc(0.6rem + env(safe-area-inset-top));
     background: var(--r505-green-dark);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
   }
 
   .dashboard__menu-btn {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    min-width: 44px;
+    min-height: 44px;
+    margin-left: -0.5rem; /* compensa el padding para alinear el ícono con el borde */
     border: 0;
+    border-radius: 8px;
     background: none;
     color: #fff;
     line-height: 0;
-    padding: 0.25rem;
+    padding: 0.5rem;
+    -webkit-tap-highlight-color: transparent;
   }
+
+  .dashboard__menu-btn:focus-visible { outline: 2px solid #fff; outline-offset: -2px; }
+  .dashboard__menu-btn:active { background: rgba(255, 255, 255, 0.15); }
 
   .dashboard__mobile-logo {
     display: block;
+    flex-shrink: 1;
+    min-width: 0;
     height: 28px;
     width: auto;
+    max-width: 100%;
+    object-fit: contain;
   }
 
   /* El usuario va a la derecha de la barra, en blanco */
   .dashboard__topbar .user-badge {
+    min-width: 0;
     margin-left: auto;
     max-width: 55%;
     color: #fff;
   }
+
+  .dashboard__topbar .user-badge__info { min-width: 0; }
 
   .dashboard__topbar .user-badge__avatar {
     background: #fff;
@@ -72,4 +128,53 @@
     min-height: auto;
     padding: 1.25rem 1rem;
   }
+}
+
+/* Tablets táctiles: más aire que en el móvil; la barra se alinea con el contenido */
+@media (min-width: 768px) and (hover: none) {
+  .dashboard__topbar {
+    padding-inline: max(2rem, env(safe-area-inset-left)) max(2rem, env(safe-area-inset-right));
+  }
+
+  .dashboard__content {
+    padding: 1.5rem 2rem;
+  }
+}
+
+@media (max-width: 439.98px) {
+  .dashboard__mobile-logo {
+    height: 24px;
+  }
+
+  /* Ocultar el nombre y rol de la barra */
+  .dashboard__topbar .user-badge__info {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  /* Mostrar la tarjeta al presionar la inicial */
+  .dashboard__topbar .user-badge__popover {
+    display: flex;
+  }
+
+  .dashboard__topbar .user-badge__avatar {
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+  }
+}
+
+/* Móvil en horizontal: barra más baja para dejar espacio al contenido */
+@media (max-height: 520px) and (hover: none) {
+  .dashboard__topbar {
+    min-height: 48px;
+    padding-block: 0.35rem;
+    padding-top: calc(0.35rem + env(safe-area-inset-top));
+  }
+
+  .dashboard__mobile-logo { height: 24px; }
 }
